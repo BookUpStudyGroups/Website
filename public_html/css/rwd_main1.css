@@ -1,0 +1,830 @@
+/*! HTML5 Boilerplate v5.2.0 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 2.5em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+<link href='http://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+
+
+@font-face {
+    font-family: Dyno;
+    src: url(../fonts/Dyno_Bold.ttf) format(truetype);
+}
+html{
+    font-size: 12px;
+    font-family: 'Dyno', Arial;
+}
+
+
+body{
+    background: #85CF85 url(../img/main_background_small.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+*{
+    box-sizing: border-box;
+    font-family: 'Dyno';
+}
+
+a{
+    color: #4b89ad;
+    text-decoration: none;
+    font-size: 2rem;
+    height: 100%;
+    width: 100%;
+    
+}
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+img{
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px 10px 10px 10px;
+}
+#logo{
+}
+
+
+[class*="col-"]{
+    float: left;
+    width: 100%;
+    height: inherit;
+
+}
+
+@media only screen and (max-width:640px) {
+    .col-m-1 { width: 8.33%;}
+    .col-m-2 { width: 16.66%;}
+    .col-m-3 { width: 25%;}
+    .col-m-4 { width: 33.33%;}
+    .col-m-5 { width: 41.66%;}
+    .col-m-6 { width: 50%;}
+    .col-m-7 { width: 58.33%;}
+    .col-m-8 { width: 66.66%;}
+    .col-m-9 { width: 75%;}
+    .col-m-10 { width: 83.33%;}
+    .col-m-11 { width: 91.66%;}
+    .col-m-12 { width: 100%;}
+    
+    
+    #spacer0 {
+        height: 1vh;
+    }
+    
+    #logo_row {
+        height: 20vh;
+    }
+    
+    #spacer1 {
+        height: 10vh;
+    }
+
+    #button_row {
+        height: 25vh;
+    }
+    
+    #spacer2 {
+        height: 2vh;
+    }
+    
+    #features_row {
+        height: 6vh;
+    }
+    
+    #spacer3 {
+        height: 6vh;
+    }
+    
+    #footer_row {
+        height: 4vh;
+    }
+    
+    #spacer4 {
+        height: 1vh;
+    }
+    
+    
+    
+}
+
+
+@media only screen and (orientation:landscape) {
+    .col-1 { width: 8.33%;}
+    .col-2 { width: 16.66%;}
+    .col-3 { width: 25%;}
+    .col-4 { width: 33.33%;}
+    .col-5 { width: 41.66%;}
+    .col-6 { width: 50%;}
+    .col-7 { width: 58.33%;}
+    .col-8 { width: 66.66%;}
+    .col-9 { width: 75%;}
+    .col-10 { width: 83.33%;}
+    .col-11 { width: 91.66%;}
+    .col-12 { width: 100%;}
+    
+    #spacer0 {
+        height: 2vh;
+    }
+    
+    #logo_row {
+        height: 20vh;
+        
+    }
+    
+    #spacer1 {
+        height: 31vh;
+    }
+
+    #button_row {
+        height: 26vh;
+    }
+    
+    #spacer2 {
+        height: 6vh;
+    }
+    
+    #features_row {
+        height: 6vh;
+    }
+    
+    #spacer3 {
+        height: 6vh;
+    }
+    
+    #footer_row {
+        height: 2vh;
+    }
+    
+    #spacer4 {
+        height: 0vh;
+    }
+    
+    body {
+        background: #85CF85 url(../img/main_background_large.png) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        
+        text-align: center;
+    }
+    
+    footer{
+        font-size: 2rem;
+        color: white;
+    }
+    
+    a{
+        font-size: 3rem;
+    }
+    
+    #logo{
+        
+    }
+    
+    #minispacer{
+        display: none;
+    }
+    
+}
+
+
+
+.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+                                                
+
+
+footer{
+    font-size: 1rem;
+    color: white;
+}
+
+
+
+
+
+.homebar {
+    
+    img {
+        transition: all 0.2s linear;
+    }
+    p {
+        transform: translateY(100px);
+        opacity: 0;
+        transition all 0.2s linear;
+    }
+    
+}
+
+.headbutton {
+    cursor: default;
+    p {
+        color: white;
+    }
+}
+
+.homebar:hover {
+    img {
+        transform: scale(1.21);
+    }
+    p {
+        opacity: 1;
+        transform: translateY(0px);
+        transition-delay: 0.1s;
+    }
+}
+
+.homebar .dropoverlay {
+    opacity: 1;
+    background-color: rgba(75,137,173, 0.8); 
+    transition: all 0.4s ease-in-out;
+}
+
+.headbutton .dropoverlay, .view .content {
+    width: 150px;
+    height: 120px;
+    position: absolute;
+    overflow: hidden;
+    top: 1;
+    left: 0
+}
+
+.dropdown_unit {
+    
+    cursor: default;
+    overlay {
+        opacity: 0;
+    }
+    
+    transition: transform .2s, opacity .2s;
+}
+.dropdown_unit:hover {
+    
+    transform: scale(1.1, 1.1);
+    overlay {
+        opacity: 1;
+    }
+}
+
+
+.overlay {
+    
+    background: #FFFFFF;
+}
+
+
+
+<!--Form CSS-->
+.nl-form {
+  width: 100%;
+  margin: 0.3em auto 0 auto;
+  font-size: 3em;
+  line-height: 1.5;
+}
+
+.nl-form ul {
+  color: 000000;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* normalize the input elements, make them look like everything else */
+@font-face {
+  font-family: 'nlicons';
+  src: url('../fonts/nlicons/nlicons.eot');
+  src: url('../fonts/nlicons/nlicons.eot?#iefix') format('embedded-opentype'), url('../fonts/nlicons/nlicons.woff') format('woff'), url('../fonts/nlicons/nlicons.ttf') format('truetype'), url('../fonts/nlicons/nlicons.svg#nlicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.nl-form input,
+.nl-form select,
+.nl-form button {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.nl-form input:focus {
+  outline: none;
+}
+/* custom field (drop-down, text element) styling  */
+
+.nl-field {
+  display: inline-block;
+  position: relative;
+}
+
+.nl-field.nl-field-open {
+  z-index: 10000;
+}
+/* the toggle is the visible part in the form */
+
+.nl-field-toggle,
+.nl-form input,
+.nl-form select {
+  line-height: inherit;
+  display: inline-block;
+  color: #4b89ad;
+  cursor: pointer;
+  border-bottom: 1px dashed #85cf85;
+}
+/* drop-down list / text element */
+
+.nl-field ul {
+  position: absolute;
+  visibility: hidden;
+  background: #76C3BD;
+  left: -0.5em;
+  top: 50%;
+  font-size: 80%;
+  opacity: 0;
+  -webkit-transform: translateY(-40%) scale(0.9);
+  -moz-transform: translateY(-40%) scale(0.9);
+  transform: translateY(-40%) scale(0.9);
+  -webkit-transition: visibility 0s 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+  -moz-transition: visibility 0s 0.3s, opacity 0.3s, -moz-transform 0.3s;
+  transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+}
+
+.nl-field.nl-field-open ul {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translateY(-50%) scale(1);
+  -moz-transform: translateY(-50%) scale(1);
+  transform: translateY(-50%) scale(1);
+  -webkit-transition: visibility 0s 0s, opacity 0.3s, -webkit-transform 0.3s;
+  -moz-transition: visibility 0s 0s, opacity 0.3s, -moz-transform 0.3s;
+  transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
+}
+
+.nl-field ul li {
+  color: #fff;
+  position: relative;
+}
+
+.nl-dd ul li {
+  padding: 0 1.5em 0 0.5em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nl-dd ul li.nl-dd-checked {
+  color: #478982;
+}
+
+.no-touch .nl-dd ul li:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.no-touch .nl-dd ul li:hover:active {
+  color: #478982;
+}
+/* icons for some elements */
+
+.nl-dd ul li.nl-dd-checked:before,
+.nl-submit:before,
+.nl-field-go:before {
+  font-family: 'nlicons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nl-dd ul li.nl-dd-checked:before {
+  content: "\e000";
+  position: absolute;
+  right: 1em;
+  font-size: 100%;
+  line-height: 3;
+}
+
+.nl-ti-text ul {
+  min-width: 8em;
+}
+
+.nl-ti-text ul li.nl-ti-input input {
+  width: 100%;
+  padding: 0.2em 2em 0.2em 0.5em;
+  border-bottom: none;
+  color: #fff;
+}
+
+.nl-form .nl-field-go {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+  width: 1.8em;
+  text-align: center;
+  color: transparent;
+}
+
+.nl-field-go:before {
+  content: "\e001";
+  font-size: 75%;
+  color: #fff;
+  width: 100%;
+  line-height: 2.5;
+  display: block;
+}
+
+input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+input:active::-webkit-input-placeholder,
+input:focus::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+input:active::-moz-placeholder,
+input:focus::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+input:active::-ms-input-placeholder,
+input:focus::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+/* example field below text input */
+
+.nl-ti-text ul li.nl-ti-example {
+  font-size: 40%;
+  font-style: italic;
+  font-weight: 400;
+  padding: 0.4em 1em;
+  color: rgba(0, 0, 0, 0.2);
+  border-top: 1px dashed rgba(255, 255, 255, 0.7);
+}
+
+.nl-ti-text ul li.nl-ti-example em {
+  color: #fff
+}
+.nl-submit-wrap {
+  margin-top: 0.4em;
+}
+
+.nl-form .nl-submit {
+  line-height: 3;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  background: #4B89AD;
+  color: #fff;
+  padding: 0 1em 0 0;
+  font-size: 40%;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.nl-submit:before {
+  content: "\e001";
+  color: #fff;
+  float: left;
+  padding: 0 0.7em;
+  margin: 0 0.8em 0 0;
+  background: #5592B6;
+}
+
+.no-touch .nl-form .nl-submit:hover,
+.no-touch .nl-form .nl-submit:active {
+  background: #69B1A9;
+}
+
+.no-touch .nl-form .nl-submit:hover:before {
+  background: #58a199;
+}
+
+
+.nl-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  z-index: 9999;
+  visibility: hidden;
+  -webkit-transition: visibility 0s 0.3s, opacity 0.3s;
+  -moz-transition: visibility 0s 0.3s, opacity 0.3s;
+  transition: visibility 0s 0.3s, opacity 0.3s;
+}
+
+.nl-field.nl-field-open ~ .nl-overlay {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+@media screen and (max-width: 45em) {
+  .nl-form {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 25em) {
+  .nl-form {
+    font-size: 2em;
+  }
+}
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers:
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

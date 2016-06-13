@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <link rel="icon" href="favicons/favicon-16x16.png" type="image/png">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        <title>BookUp</title>
+        
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="description" content="BookUp: Studying, Easier" />
+        <meta name="keywords" content="BookUp, Dartmouth study buddy, Dartmouth, study group, tutor matchmaking, study buddy matchmaking, study buddy" />
+        <meta name="author" content="Brian H. Kim, edits by Jacob K Ammon" />
+        <link rel="shortcut icon" href="../favicon.ico">
+
+        <link rel="stylesheet" href="css/normalize.css" type="text/css"/>
+        <link rel="stylesheet" href="css/TEST_mobile_main.css" type="text/css"/>
+
+        <script src="js/modernizr.custom.js"></script>
+        <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+
+    </head>
+    <body class="nl-blurred">
+        <div id=top></div>
+        <div id=main align=center>
+        
+        <a href="index.html"><img id="logo" src="img/logo_main_medium.png" srcset="img/logo_main_large.png 2000w" alt="BookUp: Find a Study Buddy Today"></a>
+
+        <div id="headerbar">Request a</div>
+        <div id="headerbar2">Study Buddy</div>
+            <div class="container demo-1">
+                <div id="aBox" class="main clearfix">
+                  
+                    
+<form id="nl-form" class="nl-form">
+                        My name is <input id="nameinput" type="text" value="" placeholder="name" data-subline="Eg: <em>John H. Smith</em> or 
+                        <em>Jane A. Doe</em>" required/><br>
+                        
+                        
+                        I'd like to find a study buddy for <input type="text" id="courseinput" value="" placeholder="a course" data-subline="Eg: <em>ECON 20</em> or 
+                        <em>SOCY 69</em>" required/><br>
+                        
+                        I'm available to study 
+                        <select id="timeinput" required>
+                            <option value="1" selected><em>any time</em></option>
+                            <option value="2">in the morning</option>
+                            <option value="3">in the afternoon</option>
+                            <option value="4">in the evening</option>
+                        </select><br>
+                        
+                        
+                        Send me a match at 
+                        <input type="text" id="emailinput" value="" placeholder="email" data-subline="Eg: <em>theodore.geisel@dartmouth.edu</em>" required/><br>
+                        <div class="nl-submit-wrap">
+                            <button id="submit-form" class="nl-submit" type="submit">Book Up</button>
+                        </div>
+                        <div class="nl-overlay"></div>
+                            
+                    </form>
+                </div>
+            </div>
+        </div>
+	<div id=bottom align=center>
+	<div id="footerbox">
+     <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+        
+<a id="copyrighttag">&copy; 2015 BOOKUP. ALL RIGHTS RESERVED.</footer>
+
+            </div>
+            </div>
+  <!-- /container -->
+          <script type="text/javascript">
+
+
+
+            function validateMyForm()
+            {
+                var valid = true;
+                var validationMessage = 'There was a hitch with your BookUp request...\r\n';
+                if (document.getElementById('nameinput').value.length == 0)
+                {
+                    validationMessage = validationMessage + '  - Please enter your name\r\n';
+                    valid = false;
+                }
+                if (document.getElementById('courseinput').value.length == 0)
+                {
+                    validationMessage = validationMessage + '  - Please enter a course\r\n';
+                    valid = false;
+                }
+                if (document.getElementById('timeinput').value == "1")
+                {
+                    validationMessage = validationMessage + '  - Please specify the time of day \r\n';
+                    valid = false;
+                }
+                if ((document.getElementById('emailinput').value.length == 0) || (document.getElementById('emailinput').value.indexOf("@dartmouth.edu")==-1))
+        	{
+            validationMessage = validationMessage + '  - Please enter a valid Dartmouth email address\r\n';
+            valid = false;
+        	}
+                if (valid == false)
+                {
+                    alert(validationMessage);
+                }
+                return valid;
+
+            }
+
+
+
+        </script>
+        <script src="js/nlform.js"></script>
+        <script>
+            Parse.initialize("Rh8he0iymi5YXEBsTAOot9V69AzvFiTqMwOWqetA", "v7cynDsiL5pzFze3wAgnMJhNGICDi5Acbx49B0Gq");
+            var TestObject = Parse.Object.extend("RequestForm");
+            var testObject = new TestObject();
+            var nlform = new NLForm( document.getElementById( 'nl-form' ) );
+
+            document.getElementById("submit-form").addEventListener("click", function(){
+                if (validateMyForm()==true)
+                {
+
+                testObject.save(
+                    {name: document.getElementById("nameinput").value,
+                     course: document.getElementById("courseinput").value,
+                     time: document.getElementById("timeinput").value,
+                     email: document.getElementById("emailinput").value}
+                ).then(alert("Thank you for submitting your study buddy request. You will be recieving a BookUp match soon!"));
+                window.location.href = "http://bookup.org";
+                }
+            });		
+        </script>
+        
+   </body>
+</html>

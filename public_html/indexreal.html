@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="favicons/favicon-16x16.png" type="image/png">
+        <link rel="shortcut icon" href="../favicon.ico">
+
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/rwd_mainold.css" />
+        <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>BookUp</title>
+    </head>
+
+    <body>
+        
+        <div class="row"><div class="col-12 col-m-12" id="spacer0"></div></div>
+        
+        
+        
+        <div class="row" id="logo_row">
+            
+            <div class="col-12 col-m-12">
+            
+                <img id="logo" src="img/logo_main_medium.png" srcset="img/logo_main_large.png 2000w" alt="BookUp: Find a Study Buddy Today">
+            
+            </div>
+            
+        </div>
+        
+        
+        
+        <div class="row"><div class="col-12 col-m-12" id="spacer1"></div></div>
+        
+        
+        
+        <div class="row" id="button_row">
+            <div class="col-2 col-m-1"></div>
+            
+            <div class="col-2 col-m-5 dropdown_unit">
+
+                <a href="buddyrequest.html"><img id="request" src="img/buttons/button_request_buddy_medium.png" srcset="img/buttons/button_request_buddy_large.png 2000w" alt="Request a Study Buddy"></a>
+
+
+            </div>
+            
+            <div class="col-2 col-m-5 dropdown_unit">
+            
+                <a href="http://libcal.dartmouth.edu/booking/studyrooms"><img id="locate" src="img/buttons/button_find_spot_medium.png" srcset="img/buttons/button_find_spot_large.png 2000w" alt="Locate a Study Spot"></a>
+            
+            </div>
+            
+            <div id="minispacer" class="col-m-1"></div>
+            <div id="minispacer" class="col-m-1"></div>
+            
+            <div class="col-2 col-m-5 dropdown_unit">
+            
+                <a href="https://docs.google.com/a/my.lowercolumbia.edu/forms/d/1u0BAzcd2yIA5_LoyR4NgFh6mSL5SQ_ACMiM9FH5u5s0/viewform"><img id="tutor" src="img/buttons/button_request_tutor_2_medium.png" srcset="img/buttons/button_request_tutor_2_large.png 2000w" alt="Request a Tutor"></a>
+            
+            </div>
+            
+            <div class="col-2 col-m-5 dropdown_unit">
+            
+                <a href="makefriend.html"><img id="friend" src="img/buttons/button_make_friend_medium.png" srcset="img/buttons/button_make_friend_large.png 2000w" alt="Make a new friend"></a>
+            
+            </div>
+            
+            <div class="col-2 col-m-1"></div>
+        </div>
+        
+        
+        
+        <div class="row"><div class="col-12 col-m-12" id="spacer2"></div></div>
+
+            
+
+        <div class="row" id="features_row">
+
+            <div class="col-12 col-m-12">
+
+                <a href="features.html" id="requestfeatures">Tell us what features you want</a>
+
+            </div>
+
+        </div>
+        
+        
+        
+        <div class="row"><div class="col-12 col-m-12" id="spacer3"></div></div>
+            
+            
+            
+        <div class="row" id="footer_row">
+
+            <div class="col-12 col-m-12">
+
+                <footer>&copy; 2015 BOOKUP. ALL RIGHTS RESERVED.</footer>
+
+            </div>
+
+        </div>
+        
+        
+        
+        <div class="row"><div class="col-12 col-m-12" id="spacer4"></div></div>
+
+        
+                
+                
+                
+                
+                
+                
+                
+        <script>
+
+            Parse.initialize("Rh8he0iymi5YXEBsTAOot9V69AzvFiTqMwOWqetA", "v7cynDsiL5pzFze3wAgnMJhNGICDi5Acbx49B0Gq");
+            var sitearea="homepage";
+            document.getElementById("request").addEventListener("click",function(){
+                sitearea="requestbuddy";
+
+                var dimensions = {Area: sitearea};
+                // Send the dimensions to Parse along with the 'search' event
+                Parse.Analytics.track('Features', dimensions);
+            });
+
+            document.getElementById("locate").addEventListener("click",function(){
+                sitearea="studyspot";
+                var dimensions = {Area: sitearea};
+                // Send the dimensions to Parse along with the 'search' event
+
+                Parse.Analytics.track('Features', dimensions);
+            });
+
+
+            document.getElementById("tutor").addEventListener("click",function(){
+                sitearea="requesttutor";
+                var dimensions = {Area: sitearea};
+                // Send the dimensions to Parse along with the 'search' event
+                Parse.Analytics.track('Features', dimensions);
+            });
+
+
+            document.getElementById("friend").addEventListener("click",function(){
+                sitearea="makefriend";
+                var dimensions = {Area: sitearea};
+                // Send the dimensions to Parse along with the 'search' event
+                Parse.Analytics.track('Features', dimensions);
+            });
+
+
+            document.getElementById("requestfeatures").addEventListener("click",function(){
+                sitearea="requestfeatures";
+                var dimensions = {Area: sitearea};
+                // Send the dimensions to Parse along with the 'search' event
+
+                Parse.Analytics.track('Features', dimensions);
+            });
+
+
+        </script>
+    </body>
+
+</html>

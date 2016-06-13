@@ -1,0 +1,88 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <link rel="icon" href="favicons/favicon-16x16.png" type="image/png">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        <title>BookUp</title>
+        
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <meta name="description" content="BookUp: Studying, Easier" />
+        <meta name="keywords" content="BookUp, Dartmouth study buddy, Dartmouth, study group, tutor matchmaking, study buddy matchmaking, study buddy" />
+        <meta name="author" content="Brian H. Kim, edits by Jacob K Ammon" />
+        <link rel="shortcut icon" href="../favicon.ico">
+
+        <link rel="stylesheet" href="css/normalize.css" type="text/css"/>
+        <link rel="stylesheet" href="css/TEST_mobile_main.css" type="text/css"/>
+
+        <script src="js/modernizr.custom.js"></script>
+        <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+
+    </head>
+    <body>
+        <div id=top><br></div>
+        <div id=main align=center>
+        <a href="index.html"><img id="logo" src="img/logo_main_medium.png" srcset="img/logo_main_large.png 2000w" alt="BookUp: Find a Study Buddy Today"></a>
+        <div id="headerbar">Request a</div>
+        <div id="headerbar2">New Feature</div>
+        <div id="aBox" class="main clearfix">
+           
+                  
+                    <p id="features">This product is made for Dartmouth students by Dartmouth students and we'd love your feedback. Are there any features you think would be helpful for studying, accessing campus resources, or filtering study buddies? Imagine any feature you want, even if you don't think it's possible.
+<br>
+<br>
+<textarea id="requestFeatures" style="color:#4b89ad;"value="" rows="6" cols="30"></textarea>
+</p>
+<br>
+<button type="submit" id="submitbutton" style="color:#4b89ad;" value="Submit">Submit</button>
+<br>
+<br>
+
+        </div>
+	<div id=bottom align=center>
+	<div id="footerbox">
+     <br>
+<br>
+<br>
+<br>
+<br>
+        
+<a id="copyrighttag">&copy; 2015 BOOKUP. ALL RIGHTS RESERVED.</footer>
+
+            </div>
+            </div>
+ 
+
+
+
+        <script>
+        Parse.initialize("Rh8he0iymi5YXEBsTAOot9V69AzvFiTqMwOWqetA", "v7cynDsiL5pzFze3wAgnMJhNGICDi5Acbx49B0Gq");
+	 var TestObject = Parse.Object.extend("FeatureForm");
+	 var testObject = new TestObject();
+         
+         
+         document.getElementById("submitbutton").addEventListener("click", function(){
+         	if (document.getElementById("requestFeatures").value=="")
+         	{
+         		alert("Please write a suggestion first!");
+    		}
+    		else
+    		{
+    			testObject.save({feedback: document.getElementById("requestFeatures").value}).then(alert("Thank you for submitting your BookUp suggestions. We'll work on implementing some of these features soon!"));
+    		window.location.href = "http://bookup.org";
+    		}
+    			
+    		
+	});
+        </script>
+        
+   </body>
+</html>
