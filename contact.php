@@ -1,7 +1,5 @@
 <?php
-require_once('admin/includes/configurations.php');
 $body_id = 'contactbody';
-require_once('logincheck.php');
 
 if( isset( $_POST['submit'] ) )
 {

@@ -1,11 +1,6 @@
 <?php
-require_once('admin/includes/configurations.php');
 $body_id = 'registerbody';
-require_once('logincheck.php');
 
-$errors = array();
-$successMsg = "";
-$fields = array();
 ?>
 <?php require_once('header.php'); ?>
 

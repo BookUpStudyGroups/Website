@@ -1,7 +1,5 @@
 <?php
-require_once('admin/includes/configurations.php');
 $body_id = 'profilebody';
-require_once('logincheck.php');
 
 ?>
 <script src="js/parse-1.6.14.js"></script>

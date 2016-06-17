@@ -1,19 +1,8 @@
 <?php
-require_once('admin/includes/configurations.php');
+
 $body_id = 'search_group_body';
-require_once('logincheck.php');
 
-require_once('admin/module/classGroup.php');
-require_once('admin/module/classStudentCourse.php');
-require_once('admin/module/classManageClass.php');
 
-$user_id = $_SESSION['student_user']['id'];
-$available_groups = $GroupObj->getAllGroupsForCurUser($_SESSION['student_user']['id']);
-$my_classes = $StudentCourseObj->getStudentClassNamesById( $_SESSION['student_user']['id'] );
-
-$errors = array();
-$successMsg = "";
-$fields = array();
 ?>
 <link rel=stylesheet" href="css/uikit.min.css"/>
 <script src="js/jquery.min.js"></script>
@@ -30,16 +19,7 @@ $fields = array();
     
     <div id="user-classes">
        	<ul>                    
-		<?php
-		    while( $row = mysql_fetch_array($my_classes) )
-        {
-			     echo '<li class="'.$row['class_id'].'_' . $row['course_num'] . '" data-name="'.$row['class_name'].'">'.'<img margin="0px 10px 0px 0px" width=25 px src="images/class-'.$row['class_id'].'-marker.png">'.
-    			'<span> &nbsp &nbsp'.$row['class_name']. " " . $row['course_num'] . '</span>'.
-    			'<input type="checkbox" checked="checked" />'.
-    			'</li>';
-    			
-        }
-		?>
+	
 
 		</ul>
     </div><!--#user-classes-->
@@ -50,42 +30,14 @@ $fields = array();
 <div id="center-location"> Dartmouth College </div>
 </div><!--#map-container-->
 <table id="user-id-table">
-<?php
-echo '<td class="user_id">'.
-$user_id.'</td>';?>
+
 </table>  
 <div id='user-classes'>
 <ul></ul>
 </div>
 <table id="available-groups-table">
 
-<?php
-date_default_timezone_set('America/New_York');
 
-
-while( $row = mysql_fetch_array($available_groups) )
-{
-  $LoSDataClass = $ManageClassObj->getManageClassByManageClassID($row['class_id']);
-
-	echo '<tr id="g_'.$row['id'].'">'.
-		 '<td class="topicname">'.$row['topic_name'].'</td>'.
-		 '<td class="class_id">'.$row['class_id'].'</td>'.
-     '<td class="group_id">'.$row['id'].'</td>'.
-     
-     '<td class="class_name">'.$LoSDataClass['name'] . " " . $row['class_number'] .'</td>'.
-
-     '<td class="class_number">'.$row['class_number'].'</td>'.
-'<td class="user_id">'.$row['user_id'].'</td>'.
-		 '<td class="location">'.$row['location'].'</td>'.
-		 '<td class="latlng">'.$row['location_latlng'].'</td>'.
-		 '<td class="on_date">'. date("m/d/Y", strtotime($row['on_date'])).'</td>'.
-     '<td class="room">'.$row['room'].'</td>'.
-		 '<td class="start_time">'.date("g:i a", strtotime($row['start_time'])).'</td>'.
-		 '<td class="end_time">'.date("g:i a", strtotime($row['end_time'])).'</td>'.
-		 '</tr>';
-
-}
-?>
 
 </table>
 
@@ -154,11 +106,11 @@ while( $row = mysql_fetch_array($available_groups) )
             </div>
             <div class="form-group">
               <label for="ag_topicname">Topic Name</label>
-              <input type="text" class="form-control" placeholder="Enter Topic Name" name="ag_topicname" id="ag_topicname" value="<?=(!empty($_POST['ag_topicname']))? $CommanObj->inscrape($_POST['ag_topicname']) : $CommanObj->inscrape($studentData['ag_topicname']);?>">
+              <input type="text" class="form-control" placeholder="Enter Topic Name" name="ag_topicname" id="ag_topicname" value="">
             </div>
             <div class="form-group" id="dateDivId">
               <label for="ag_date">Date</label>
-              <input type="text" class="form-control datepicker" name="ag_date" id="ag_date" value="<?=(!empty($_POST['ag_date']))? $CommanObj->inscrape($_POST['ag_date']) : $CommanObj->inscrape($studentData['ag_date']);?>">
+              <input type="text" class="form-control datepicker" name="ag_date" id="ag_date" value="">
             </div>
             <div class="form-group">
             <div id="time-range">
@@ -174,7 +126,7 @@ while( $row = mysql_fetch_array($available_groups) )
             
             <div class="form-group">
               <label for="ag_room">Location</label>
-              <input type="text" class="form-control" placeholder="Enter Room Number" name="ag_room" id="ag_room" value="<?=(!empty($_POST['ag_room']))? $CommanObj->inscrape($_POST['ag_room']) : $CommanObj->inscrape($studentData['ag_room']);?>">
+              <input type="text" class="form-control" placeholder="Enter Room Number" name="ag_room" id="ag_room" value="">
             </div>
 <div class="form-group">
               <label for="ag_size">Max Group Size</label>

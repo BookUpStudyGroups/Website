@@ -1,35 +1,5 @@
 <?php
-require_once('admin/includes/configurations.php');
 $body_id = 'changepassword';
-require_once('logincheck.php');
-require_once('admin/module/classStudent.php');
-
-if( isset( $_POST['si_submit'] ) ){
-	
-  $rules  = array(); 
-
-  $rules[]  = "required,new_password,Please enter old password.";
-  
-  $errors   = validateFields($_POST, $rules);
-
-  if (!empty($errors)){  
-      $fields = $_POST;  
-	  $error_msg = $errors[0];
-  }else{
-	$StudentObj->old_password		= $_POST['old_password'];
-	$StudentObj->new_password		= $_POST['new_password'];
-    if( $CurrentStudent = $StudentObj->getStudentByStudendIDPassword($_SESSION['student_user']['id'], $StudentObj->old_password) )
-	{	
-		if( $CurrentStudent = $StudentObj->updateStudentUsernamePassword($CurrentStudent['id']) )
-			 exit("<script>window.location='change-password.php?mes=changepassword';</script>");
-		else							
-			$error_msg = "Database can't modify! Please try again.";
-	}							
-	else						
-		$error_msg = "Invalid old password! Please try again.";
-  }
-	
-}//submit check
 
 ?>
 <?php require_once('header.php'); ?>
@@ -37,17 +7,11 @@ if( isset( $_POST['si_submit'] ) ){
     <div class="container">
     <div class="col-xs-12 col-md-5 col-sm-7 col-centered">
 
-      <?php
-          if( isset($error_msg) && count($error_msg) >0 ){
-        ?>
-            <p class="error_msg"><?php echo $error_msg;?></p>
-        <?php
-          }else if( $_GET['mes'] == 'changepassword' ){
-			   ?>
-            	<p class="success_msg">Your password has been changed successfully.</p>
-          <?php	
-		    	}
-		      ?>
+     
+            <p class="error_msg"></p>
+       
+            	<p class="success_msg"></p>
+          
           
         <div class="login_box">
           <div class="title">Change Password</div>

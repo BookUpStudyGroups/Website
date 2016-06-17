@@ -1,7 +1,5 @@
 <?php
-require_once('admin/includes/configurations.php');
 $body_id = 'homebody';
-require_once('logincheck.php');
 
 ?>
 <?php require_once('header.php'); ?>

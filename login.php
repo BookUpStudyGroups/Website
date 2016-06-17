@@ -1,41 +1,6 @@
 <?php
-require_once('admin/includes/configurations.php');
 $body_id = 'loginbody';
-require_once('logincheck.php');
-/*
-require_once('admin/module/classStudent.php');
 
-if( isset( $_POST['si_submit'] ) ){
-	
-  $rules  = array(); 
-
-  $rules[]  = "required,si_email,Please enter email address.";
-  $rules[]  = "valid_email,si_email,Please enter valid email address.";
-  $rules[]  = "required,si_password,Please enter password.";
-  
-  $errors   = validateFields($_POST, $rules);
-
-  if (!empty($errors)){  
-      $fields = $_POST;  
-  }else{
-    $studentRecord = $StudentObj->getStudentByEmailPassword( $CommanObj->inscrape($_POST['si_email']), $CommanObj->inscrape($_POST['si_password']) );
-    if($studentRecord){
-        if($_POST['si_email']=="brian.h.kim.15@dartmouth.edu"){
-        $_SESSION['student_user'] = $studentRecord;
-        header("location:index.php");
-        exit;
-}else{
-$errors[]   =  "Site is under maintenance. Access is restricted.";     
-      $fields = $_POST;
-}
-    }else{
-      $errors[]   =  "Invalid email address and password.";     
-      $fields = $_POST;
-    }
-  }
-	
-}//submit check
-*/
 ?>
 <script src="js/parse-1.6.14.js"></script>
 
