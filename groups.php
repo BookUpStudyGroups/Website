@@ -16,14 +16,14 @@ require_once('header.php');
               
           </div> 
      
-<div class="col-xs-12 col-md-6 col-lg-6 col-sm-12">
+<div class="col-xs-12 col-md-6 col-lg-6 col-sm-12" id="details" title="" style="display: none;">
 			
-        	<div id="details" title="" style="display: none;">
+        	<div title="" >
       
 		<div class="reg-title" id= "groupViewTitle">
 
          <ul id= "groupNavBar">
-           <li class="groupNavElem" id= "detailsLi"><a href="">Details</a></li>
+           <li class="groupNavElem" id= "detailsLi"><a href="#">Details</a></li>
             <li class="groupNavElem" id= "messagesLi"><a href="#">
             <div class="img" id="chat-icon"> <img src= "images/chat-2-icon.png" width="40px" alt=""></a></div>
             Messages</li> 
@@ -90,17 +90,7 @@ require_once('header.php');
 </div>
 
 <div class="moredetailsbtn">
-            <div class="group_member">
-          
-          		<div class="col-md-4 col-sm-4">
-	              <div class="member">
-	                <div class="img" ><img src="" alt=""></div>
-	                
-	              </div>
-	            </div>
-
-          
-        </div>
+            
             </div>
           </form>
 
@@ -126,33 +116,8 @@ members side showing
       </div>
 </div>
 </div>
-</div>
-      <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-<div id="wrapper" title="" style="display:none;">
 
 
-
-    <div id="menu">
-BookUp Study Chat
-        <div style="clear:both"></div>
-    </div>
-     
-    <div id="chatbox"></div>
-     
-        <input name="usermsg" type="text" id="usermsg" size="63" />
-        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
-</div>
-
-<div class="spacer"></div>
-<div class="spacer"></div>
-<div class="spacer"></div>
-<div class="spacer"></div>
-<div class="spacer"></div>
-<div class="spacer"></div>
-<div class="spacer"></div>
-<div class="spacer"></div>
-<div class="spacer"></div>
-</div>
     	<div class="row">
         <div class="col-md-6 col-sm-6">
         <div class="ms-group groups-css">
@@ -192,24 +157,7 @@ BookUp Study Chat
                             <td colspan="3" class="no_record">No Groups Found.</td>
                           </tr>
                       
-                        <tr>
-                          <td width="70%">
-<div class="col-sm-5 col-xs-5 col-md-4 col-lg-3">
-<a href="groupdetails.php?id=">
-<img id="classimg" width=100% src="images/.png">
-</a>
-</div>
-<div class="col-sm-7 col-xs-7 col-md-8 col-lg-9">
-
-                           
-                            <br />
-                            <i></i>
-                          </div></td>
-                          <td width="30%" align="right">
-<div class="delete"><a href="groupdetails.php?id=">Details</a></div>
-                            <div class="delete"><a href="groups.php?action=left&id=">Leave</a></div>
-                          </td>
-                        </tr>
+                        
 
                     
 
@@ -219,6 +167,7 @@ BookUp Study Chat
         </div>
         </div>
         </div>
+    </div>
     </div>
 </div>
 

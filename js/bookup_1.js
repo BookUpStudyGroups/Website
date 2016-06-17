@@ -877,6 +877,7 @@ $('#availGroups .no_record').remove();
                                 table.deleteRow(1);
 */
                             }
+                            var isPublic = false;
                             // Messages for this group
                             for (var j = 0; j < results.length; j++) {
                                 var groupId = results[j].id;
@@ -928,6 +929,7 @@ if(openSlots>0){
 $('#myGroups .no_record').remove();
                             }
                             // Messages for this group
+                            var isPublic = false;
                             for (var j = 0; j < results.length; j++) {
                                 var groupId = results[j].id;
                                 var topicname = results[j].get("groupName");
