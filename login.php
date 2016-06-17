@@ -103,7 +103,7 @@ return false;
  var username=document.getElementById("si_email").value;
 var password=document.getElementById("si_password").value;
 
-if(username=="chipmunk@dartmouth.edu"){
+if(username=="chipmunk@dartmouth.edu" || username=="al3xwolf@dartmouth.edu"){
                 Parse.User.logIn(username, password, {
   success: function(user) {
     // Do stuff after successful login.

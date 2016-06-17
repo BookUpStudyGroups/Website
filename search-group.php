@@ -193,6 +193,16 @@ while( $row = mysql_fetch_array($available_groups) )
               <div id="map2"></div>
               <input type="hidden" class="form-control" name="ag_location" id="ag_location" readonly="true">
             </div>
+
+            <!--Rdio buttons for open or closed groups -->
+            <div class="form-group">
+              <label for="ag_size">Group Type</label>
+                
+                <input id="publicRadio"type="radio" name= "isPublic" value= "yes" checked>Public
+                <input id="privateRadio"type="radio" name="isPublic" value= "no" ]> Private
+              
+            </div>
+
             <!-- Dartmouth College Hanover New Hampshire United States 03755 -->
             <div class="submit">
             	<input type="hidden" name="ag_location_latlng" id="ag_location_latlng" value="" />

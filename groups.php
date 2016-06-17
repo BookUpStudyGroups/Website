@@ -83,9 +83,19 @@ require_once('header.php');
 			
         	<div id="details" title="" style="display: none;">
       
-		<div class="reg-title" >GROUP DETAILS<div class="img" id="chat-icon"><a href="#"><img src="images/chat-2-icon.png" width="40px" alt=""></a></div></div>
+		<div class="reg-title" id= "groupViewTitle">
+
+         <ul id= "groupNavBar">
+           <li class="groupNavElem" id= "detailsLi"><a href="">Details</a></li>
+            <li class="groupNavElem" id= "messagesLi"><a href="#">
+            <div class="img" id="chat-icon"> <img src= "images/chat-2-icon.png" width="40px" alt=""></a></div>
+            Messages</li> 
+            <li class="groupNavElem" id= "membersLi"> <a href="#">Members</a></li>
+      </ul>
+
+</div>
 <div id="card">
-<div class="front"> 
+<div class="details"> 
         <div class="login_box registration">
           <form method="post" action="" id="addgroupform" onsubmit="return editGroupValidation();">
             <input type="hidden" name="action" value="editgroup" />
@@ -100,6 +110,12 @@ require_once('header.php');
               <label for="ag_topicname">Topic Name</label>
               <input type="text" readonly="readonly" class="form-control" placeholder="Enter Topic Name" name="ag_topicname" id="ag_topicname" value="<?php echo $CommanObj->inscrape($groupDetails['topic_name']);?>">
             </div>
+
+            <div class="form-group">
+              <label for="ag_public">Group Type</label>
+              <input type="text" readonly="readonly" class="form-control" placeholder="Enter Room no." name="ag_public" id="ag_public" value="<?php echo $CommanObj->inscrape($groupDetails['isPublic']);?>">
+            </div>
+
             <div class="form-group">
               <label for="ag_date">Date</label>
               <input type="text" readonly="readonly" class="form-control" name="ag_date" id="ag_date" value="<?php echo date("m/d/Y",strtotime($CommanObj->inscrape($groupDetails['on_date'])));?>">
@@ -121,6 +137,7 @@ require_once('header.php');
               <label for="ag_room">Room Number</label>
               <input type="text" readonly="readonly" class="form-control" placeholder="Enter Room no." name="ag_room" id="ag_room" value="<?php echo $CommanObj->inscrape($groupDetails['room']);?>">
             </div>
+
             <div class="form-group">
               <label for="ag_location">Location</label>
               <div id="map2"></div>
@@ -176,7 +193,7 @@ require_once('header.php');
 
         </div>
 </div>
-<div class="back"> 
+<div class="messages"> 
 <div id="wrapper" title="">
 
 
@@ -189,9 +206,13 @@ require_once('header.php');
         <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
 </div>
 </div>
+
+<div class="members"> 
+members side showing
+</div>
       </div>
 </div>
-
+</div>
 </div>
       <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
 <div id="wrapper" title="" style="display:none;">

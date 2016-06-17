@@ -448,25 +448,54 @@ function joinGroup(idTag) {
         }
     });
 }
-function toggleGroupView(){
-if (!$("#card .front").is(":visible")){
-$("#card .back").hide();
-$("#card .front").show();
-}else{
-$("#card .front").hide();
-$("#card .back").show();
+
+function toggleGroupViewDetails(){
+		if($("#card .messages").is(":visible")){
+			$("#card .messages").hide();
+		}
+		else{
+			$("#card .members").hide();
+		}
+	$("#card .details").show();
+	console.log("deatils show, other 2 hidden")
 }
+
+function toggleGroupViewMessages(){
+
+	if($("#card .details").is(":visible")){
+		$("#card .details").hide();
+	}
+	else{
+		$("#card .members").hide();
+	}
+	$("#card .messages").show();
+	console.log("messages show, other 2 hidden")
 }
+
+function toggleGroupViewMembers(){
+	if($("#card .messages").is(":visible")){
+		$("#card .messages").hide();
+	}
+	else{
+		$("#card .details").hide();
+	}
+	$("#card .members").show();
+	console.log("memebrs show, other 2 hidden")
+}
+
+
 function focusGroupView(idTag){
 $('#myGroups tr').each(function(index){
 if(index>1){
 //leaveGroupView(.css( "background-color" )
-alert($(this).attr('id'));
 }
 });
 //$("#card").flip({trigger: 'manual',autoSize: 'true'});
-$("#card .back").hide();
-$("#card .front").show();
+$("#card .messages").hide();
+$("#card .members").hide();
+$("#card .details").show();
+console.log("deatils show, other 2 hidden")
+
 
 $('#details').fadeIn('fast', 'linear');
 google.maps.event.trigger(document.getElementById('map2'), "resize");
@@ -479,14 +508,42 @@ $('#1'+groupId).unbind();
 $('#1'+groupId).bind("click", function() {
                                     leaveGroupView(groupId,origColor);
                                 });
+
+// var membersQuery = new Parse.Query(User){
+// 	console.log(membersQuery[0])
+// }
+
 var studyGroup = Parse.Object.extend("studyGroup");
         var groupQuery = new Parse.Query(studyGroup);
         groupQuery.get(groupId, {
             success: function(results) {
+
+           var groupName4View =results.get("groupName");
+           var isPublic = results.get("isPublic");
+           var groupUserIDs = results.get("members");
+          //  var membersQuery = new Parse.Query(User);
+          // membersQuery.get()
+          // for(i=0; i<membersQuery.Size(); i++){
+
+          // }
+
+           //array of full name strings(1 string per person) of Memebr in Group
+
+       
+
+
  $('#ag_classname').val($('#'+groupId+' #classname').text());
- $('#ag_topicname').val(results.get("groupName"));
+ $('#ag_topicname').val(groupName4View);
+ $('#groupViewTitle').prepend(groupName4View);
 $('#ag_room').val(results.get("location"));
 $('#ag_location_latlng').val(results.get("location_latlng"));
+
+//update group type data
+if (isPublic) {
+	$('#ag_public').val("Public");
+}else{
+	$('#ag_public').val("Private");
+}
 
 if($("#ag_location_latlng").length > 0 && $("#ag_location_latlng").val() != ""){
         		var latlangdata = $("#ag_location_latlng").val();
@@ -763,9 +820,20 @@ alert("error, couldn't find group");
 var lastChecked;
 var map;
     var currentUser;
- $('#chat-icon a').bind("click", function() {
-                                    toggleGroupView()
+
+ /*Bind js function to 3 nav things in group view*/
+ $('#detailsLi').bind("click", function() {
+                                    toggleGroupViewDetails()
                                 });
+
+ $('#messagesLi').bind("click", function() {
+                                    toggleGroupViewMessages()
+                                });
+
+ $('#membersLi').bind("click", function() {
+                                    toggleGroupViewMembers()
+                                });
+
     lastChecked = new Date();
 
     var classes = Parse.Object.extend("Class");
@@ -815,6 +883,7 @@ $('#availGroups .no_record').remove();
                                 var topicname = results[j].get("groupName");
                                 var members = results[j].get("numStudents");
                                 var maxSize = results[j].get("groupSize");
+                                var isPublic = results[j].get("isPublic");
                                 var openSlots = maxSize - members;
 if(openSlots>0){
                                 var slots = "";
@@ -824,11 +893,17 @@ if(openSlots>0){
                                 for (var k = 0; k < openSlots; k++) {
                                     slots = slots.concat("<div class='member-slot-empty'></div>");
                                 }
-                                $('#availGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Details</a></div><div class='join' id='2" + groupId + "'><a href='#'>Join</a></div></td></tr>");
 
+                                /*only show avalible group if its a public one*/
+                                if(isPublic){
+                                	$('#availGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Details</a></div><div class='join' id='2" + groupId + "'><a href='#'>Join</a></div></td></tr>");
+
+                                /*add event listener*/
                                 document.getElementById("2" + groupId).addEventListener("click", function() {
                                     joinGroup(this.id)
                                 });
+                                }
+                               
 /*
                                 document.getElementById("1" + groupId).addEventListener("click", function() {
                                     selectGroup(this.id)
@@ -858,6 +933,7 @@ $('#myGroups .no_record').remove();
                                 var topicname = results[j].get("groupName");
                                 var members = results[j].get("numStudents");
                                 var maxSize = results[j].get("groupSize");
+                                var isPublic = results[j].get("isPublic");
                                 var openSlots = maxSize - members;
                                 var slots = "";
                                 for (var k = 0; k < members; k++) {
@@ -866,8 +942,15 @@ $('#myGroups .no_record').remove();
                                 for (var k = 0; k < openSlots; k++) {
                                     slots = slots.concat("<div class='member-slot-empty'></div>");
                                 }
-//#available-groups-table
-                                $('#myGroups tbody').append("<tr id='"+groupId+"'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i><span id='classname'>" + title + "</span></i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'><span>View</span></a></div><div class='join' id='2" + groupId + "'><a href='#'>Leave</a></div></td></tr>");
+//#available-groups-table		
+								/* Append group to table and add a private label if is*/
+								if(isPublic){
+									$('#myGroups tbody').append("<tr id='"+groupId+"'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i><span id='classname'>" + title + "</span></i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'><span>View</span></a></div><div class='join' id='2" + groupId + "'><a href='#'>Leave</a></div></td></tr>");
+								}
+								else{
+									$('#myGroups tbody').append("<tr id='"+groupId+"'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + " - Private<br><i><span id='classname'>" + title + "</span></i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'><span>View</span></a></div><div class='join' id='2" + groupId + "'><a href='#'>Leave</a></div></td></tr>");
+								}
+                             
 
                                 document.getElementById("2" + groupId).addEventListener("click", function() {
                                     leaveGroup(this.id)
@@ -3309,7 +3392,7 @@ curr_sel_marker=undefined;
 				alert("Whoops! No location chosen yet!");
 			}else{
 				$("#create-group-div").addClass('open');
-				setTimeout( init2, 1000 );
+				setTimeout( init3, 1000 );
 			}
 			
 		});
@@ -4053,4 +4136,74 @@ function strongPassword(valueData){
 		return false;
 	 }
  }
+function submitNewGroup() {
+
+    var returnValue = addGroupValidation();
+    var time = $.trim($(".slider-time").text());
+    var time2 = $.trim($(".slider-time2").text());
+    var date = $.trim($("#ag_date").val());
+    var regDate = new Date(date + " " + time);
+    var regDate2 = new Date(date + " " + time2);
+
+    var initialArray = new Array();
+    initialArray.push(getInitials(Parse.User.current().get("fullName")));
+
+    var Group = Parse.Object.extend("studyGroup");
+    var newGroup = new Group();
+
+    var isPublic;
+    if ($("#publicRadio").is(":checked")){
+    	isPublic=true;
+    }
+    else{
+    	isPublic= false;
+    }
+
+    newGroup.set("location_latlng", $("#ag_location_latlng").val());
+    newGroup.set("groupName", $("#ag_topicname").val());
+    newGroup.set("groupSize", parseInt($("#ag_size").val()));
+    newGroup.set("location", $("#ag_room").val());
+    newGroup.set("endDate", regDate2);
+    newGroup.set("startDate", regDate);
+    newGroup.set("initialArray", initialArray);
+    newGroup.set("creator", Parse.User.current());
+    var relation = newGroup.relation("members");
+    relation.add(Parse.User.current());
+    newGroup.set("numStudents", 1);
+    newGroup.set("isPublic", isPublic);
+
+    newGroup.save(null, {
+        success: function(newGroup) {
+            // Execute any logic that should take place after the object is saved.
+            alert('New group created with objectId: ' + newGroup.id);
+            var classes = Parse.Object.extend("Class");
+            var classQuery = new Parse.Query(classes);
+            classQuery.get($("#ag_class").val(), {
+                success: function(groups) {
+                    var relation = groups.relation("classGroups");
+                    relation.add(newGroup);
+                    groups.save();
+
+
+
+                },
+                error: function(object, error) {
+                    // The object was not retrieved successfully.
+                    // error is a Parse.Error with an error code and message.
+                    alert("Error: Courses could not be retrieved.");
+                }
+            });
+            return true;
+        },
+        error: function(newGroup, error) {
+            // Execute any logic that should take place if the save fails.
+            // error is a Parse.Error with an error code and message.
+            alert('Failed to create new group, with error code: ' + error.message);
+        }
+    });
+
+    return false;
+
+}
+
 	
