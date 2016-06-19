@@ -480,7 +480,8 @@ function toggleGroupViewMembers(){
 		$("#card .details").hide();
 	}
 	$("#card .members").show();
-	console.log("memebrs show, other 2 hidden")
+	
+
 }
 
 
@@ -509,27 +510,55 @@ $('#1'+groupId).bind("click", function() {
                                     leaveGroupView(groupId,origColor);
                                 });
 
-// var membersQuery = new Parse.Query(User){
-// 	console.log(membersQuery[0])
-// }
-
+//init groupnames and object id
 var studyGroup = Parse.Object.extend("studyGroup");
+        var groupQuery1 = new Parse.Query(studyGroup);
+
         var groupQuery = new Parse.Query(studyGroup);
         groupQuery.get(groupId, {
             success: function(results) {
 
            var groupName4View =results.get("groupName");
            var isPublic = results.get("isPublic");
-           var groupUserIDs = results.get("members");
-          //  var membersQuery = new Parse.Query(User);
-          // membersQuery.get()
-          // for(i=0; i<membersQuery.Size(); i++){
+           var membersRelation = results.get("members");
 
-          // }
+           //query all memebers in this group
+           var membersQuery= membersRelation.query();
+          	membersQuery.find({
+  				success: function(members) {
+    				
+					//get member's full name and email
+    				for(i=0; i<members.length; i++){
 
-           //array of full name strings(1 string per person) of Memebr in Group
+    					var memName = members[i].get("fullName");
+    					var memEmail = members[i].get("email");
 
-       
+    					//append member to member card 
+    					$('#membersDisplay').append(
+    						"<div class= 'memberBox'> <p class= 'memberNameText'>"+memName+" </p> </div>"
+    						);
+
+    				}
+
+    				//psudeo group is not full variable
+    				var groupFull= false;
+
+    				if(groupFull){
+    				}
+
+    				else{
+    					//pretend invite button
+    					$('#membersDisplay').append(
+    					"<button id= 'inviteButton'> Inivte More <button>"
+    					);
+    				}
+    				
+  				},
+
+  				error: function(error) {
+    				alert("Error: COuld not retirve group Members Data");
+  					}
+			});
 
 
  $('#ag_classname').val($('#'+groupId+' #classname').text());
