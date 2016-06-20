@@ -110,8 +110,19 @@ require_once('header.php');
 </div>
 </div>
 
-<div class="members" id = "membersDisplay"> 
-<p id= "membersTitle"> Group Members <p>
+<div class="members"> 
+<p class = 'membersTextHeaders'"> Group Members <p>
+
+<table style="width:100%" id= "membersDisplay"/>
+  
+
+</table>
+
+<table style="width:100%" />
+  
+
+</table>
+
 </div>
       </div>
 </div>

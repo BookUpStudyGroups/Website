@@ -379,6 +379,15 @@ function selectGroup(idTag) {
     //document.getElementById(idTag).getElementsByTag("a")[0].style.backgroundColor = "#FFFFFF";
 }
 
+//method to invite a classmate to a group after button press
+function inviteClassmate(groupId){
+
+	//get email in input box
+    var email = $('#emailPlaceholder').val();
+
+    console.log(email+" "+ groupId)
+}
+
 function leaveGroup(idTag) {
     $('#details').hide();
     var groupId = idTag.slice(1);
@@ -531,12 +540,27 @@ var studyGroup = Parse.Object.extend("studyGroup");
     				for(i=0; i<members.length; i++){
 
     					var memName = members[i].get("fullName");
-    					var memEmail = members[i].get("email");
+    					var memEmail = members[i].get("username");
+
+    					console.log(memEmail);
+
+    					//Find person's class year
+    					var memClassYear= memEmail.split(".");
+    					var arrayIndex= memClassYear.length -2;
+    					memClassYear= memClassYear[arrayIndex].split("@");
+    					memClassYear= " '"+ memClassYear[0];
+
+    					memName= memName+ memClassYear;
+
+    					//get mailto email link
+    					var emailLink="mailto:"+memEmail;
 
     					//append member to member card 
     					$('#membersDisplay').append(
-    						"<div class= 'memberBox'> <p class= 'memberNameText'>"+memName+" </p> </div>"
+    						"<tr class= 'memberBox'> <td><p class= 'memberNameText'>"+memName+ "</p> <a href= '"+emailLink+"'> <img class= 'mailImg' src= 'images/mailIconBookUp.png'></a> </td> </tr>"
     						);
+
+    					console.log("appened html");
 
     				}
 
@@ -544,14 +568,23 @@ var studyGroup = Parse.Object.extend("studyGroup");
     				var groupFull= false;
 
     				if(groupFull){
+
     				}
 
     				else{
     					//pretend invite button
     					$('#membersDisplay').append(
-    					"<button id= 'inviteButton'> Inivte More <button>"
+    					"<tr> <td> <div> <p class = 'membersTextHeaders'> Add Classmate </p> </div></td>  </tr> "+
+    					"<tr><td> <input id='emailPlaceholder' type='text'placeholder=' Enter Email'></td> </tr>"+
+    					"<tr><td> <div id='submitButt'> <p id = 'inviteButtText'><p> Click to Invite! </div> </td> </tr>"
     					);
     				}
+
+    				//for invite button click
+    				$('#submitButt').bind("click", function(){
+
+    					inviteClassmate(groupId);
+    				});
     				
   				},
 
