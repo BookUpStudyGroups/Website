@@ -416,16 +416,7 @@ function leaveGroup(idTag) {
     });
 }
 
-function leaveGroupView(idTag,origColor) {
-var groupId=idTag;
-    $('#details').hide();
-$('#'+groupId).css("background-color", origColor);
-$('#1'+groupId+' span').text('View');
-$('#1'+groupId).unbind();
-$('#1'+groupId).bind("click", function() {
-                                    focusGroupView(this.id)
-                                });
-}
+
 
 function joinGroup(idTag) {
     var groupId = idTag.slice(1);
@@ -465,7 +456,7 @@ function toggleGroupViewDetails(){
 		else{
 			$("#card .members").hide();
 		}
-	$("#card .details").show();
+	$("#card .details").show("slow","swing");
 	console.log("deatils show, other 2 hidden")
 }
 
@@ -477,7 +468,7 @@ function toggleGroupViewMessages(){
 	else{
 		$("#card .members").hide();
 	}
-	$("#card .messages").show();
+	$("#card .messages").show("slow","swing");
 	console.log("messages show, other 2 hidden")
 }
 
@@ -488,13 +479,24 @@ function toggleGroupViewMembers(){
 	else{
 		$("#card .details").hide();
 	}
-	$("#card .members").show();
+	$("#card .members").show("slow","swing");
 	
 
 }
 
-
+function leaveGroupView(idTag,origColor) {
+var groupId=idTag;
+    $('#availGroups').show("slow","swing");
+    $('#details').hide();
+$('#'+groupId).css("background-color", origColor);
+$('#1'+groupId+' span').text('View');
+$('#1'+groupId).unbind();
+$('#1'+groupId).bind("click", function() {
+                                    focusGroupView(this.id)
+                                });
+}
 function focusGroupView(idTag){
+    $('#availGroups').hide("slow","swing");
 $('#myGroups tr').each(function(index){
 if(index>1){
 //leaveGroupView(.css( "background-color" )
@@ -503,7 +505,7 @@ if(index>1){
 //$("#card").flip({trigger: 'manual',autoSize: 'true'});
 $("#card .messages").hide();
 $("#card .members").hide();
-$("#card .details").show();
+$("#card .details").show("slow","swing");
 console.log("deatils show, other 2 hidden")
 
 
@@ -535,7 +537,7 @@ var studyGroup = Parse.Object.extend("studyGroup");
            var membersQuery= membersRelation.query();
           	membersQuery.find({
   				success: function(members) {
-    				
+    				$('#membersDisplay tr').remove();
 					//get member's full name and email
     				for(i=0; i<members.length; i++){
 
@@ -557,7 +559,7 @@ var studyGroup = Parse.Object.extend("studyGroup");
 
     					//append member to member card 
     					$('#membersDisplay').append(
-    						"<tr class= 'memberBox'> <td><p class= 'memberNameText'>"+memName+ "</p> <a href= '"+emailLink+"'> <img class= 'mailImg' src= 'images/mailIconBookUp.png'></a> </td> </tr>"
+    						"<tr class= 'memberBox'> <td><p class= 'memberNameText'><a href= '"+emailLink+"'> <img class= 'mailImg' src= 'images/mailIconBookUp.png'></a>&nbsp&nbsp"+memName+ "</p>  </td> </tr>"
     						);
 
     					console.log("appened html");
@@ -3027,7 +3029,7 @@ var shadows=new Array();
 var floors=new Array();
 var testCoords=new Array();
 for (i = 0; i < polys.length; i++) {
-        tmp = parsePolyStrings(polys[i],0.0001,0);
+        tmp = parsePolyStrings(polys[i],0.00005,0);
         if (tmp.length) {
 buildings.push(tmp);
         }
@@ -3041,7 +3043,7 @@ testCoords.push(tmp[0]);
     }
 tmp=[];
 for (i = 0; i < polys.length; i++) {
-        tmp = parsePolyStrings(polys[i],0.000125,-0.000025);
+        tmp = parsePolyStrings(polys[i],0.000075,-0.000025);
         if (tmp.length) {
 shadows.push(tmp);
         }
@@ -3056,7 +3058,7 @@ floors.push(tmp);
 var curr_sel_building;
 for(var i=0; i<buildings.length; i++){
 
- var test=drawExcrudedShape(map, testCoords[i], 0.0001, defaultStrokeColor, defaultStrokeOpac, 0.25, defaultColor, 0.5);
+ var test=drawExcrudedShape(map, testCoords[i], 0.00005, defaultStrokeColor, defaultStrokeOpac, 0.3, "#c3cbc3", 1.0);
 var shadow = new google.maps.Polygon({
     paths: shadows[i],
     strokeColor: '#000000',

@@ -23,11 +23,11 @@ require_once('header.php');
 		<div class="reg-title" id= "groupViewTitle">
 
          <ul id= "groupNavBar">
-           <li class="groupNavElem" id= "detailsLi"><a href="#">Details</a></li>
+             <li class="groupNavElem" id= "detailsLi"><a href="#"><div class="img" id="chat-icon"> <img src= "images/details-icon.png" width="40px" alt=""></div>Details</a>
+        </li>
             <li class="groupNavElem" id= "messagesLi"><a href="#">
-            <div class="img" id="chat-icon"> <img src= "images/chat-2-icon.png" width="40px" alt=""></a></div>
-            Messages</li> 
-            <li class="groupNavElem" id= "membersLi"> <a href="#">Members</a></li>
+                <div class="img" id="chat-icon"> <img src= "images/chat-2-icon.png" width="40px" alt=""></div>Messages</a></li> 
+             <li class="groupNavElem" id= "membersLi"> <a href="#"><div class="img" id="chat-icon"> <img src= "images/group-members-icon.png" width="40px" alt=""></div>Members</a></li>
       </ul>
 
 </div>

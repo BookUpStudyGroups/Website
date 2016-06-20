@@ -45,7 +45,7 @@ padding: 7px 12px;
 .groupNavElem{
     text-align:center; 
     display: inline-block;
-    border:1px blue solid;
+    //border:1px blue solid;
     padding:5px;
 }
 
@@ -193,7 +193,7 @@ background:#6CC8E8;
 #chat-icon a{
 display: inline-block
 }
-#chat-icon a:hover{
+#chat-icon img:hover{
 transform:scale(1.1);
 }
 #submitmsg{
@@ -238,7 +238,7 @@ margin-left:30px;
 .htop_four_icons a img { width:65%;}
 .htop_four_icons a:hover { transform:scale(1.1);}
 
-.slider_section { float:left; min-height:600px; width:100%;  background:url(../images/web_bg.jpg) no-repeat center center; background-size:cover; background-attachment:fixed; }
+.slider_section { float:left; min-height:600px; width:100%;  background:url(../images/polybackground.png) no-repeat center center; background-size:cover; background-attachment:fixed; }
 .overlay-table {/* text-align:center; padding:50px 0 200px 0;*/ min-height:45vh;}
 
 .start_studying { float:left; text-align:right; padding:50px 0 0; /* bottom:55px; padding-right:0; position:fixed; z-index:9; right:20px;*/}
@@ -532,10 +532,14 @@ text-align: center;
 }
 
 .mailImg{
-    height: 30px;
+    height: 24px;
    display:block;
     float:left;
 }
+.mailImg:hover{
+   transform:scale(1.03);
+}
+
 
 #center-location{
 background:#FFF;
