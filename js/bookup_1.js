@@ -538,7 +538,7 @@ var studyGroup = Parse.Object.extend("studyGroup");
             success: function(results) {
 
            var groupName4View =results.get("groupName");
-           var isPublic = results.get("isPublic");
+           var isPrivate = results.get("isPrivate");
            var membersRelation = results.get("members");
 
            //query all memebers in this group
@@ -611,7 +611,7 @@ $('#ag_room').val(results.get("location"));
 $('#ag_location_latlng').val(results.get("location_latlng"));
 
 //update group type data
-if (isPublic) {
+if (!isPrivate) {
 	$('#ag_public').val("Public");
 }else{
 	$('#ag_public').val("Private");
@@ -942,6 +942,7 @@ var map;
                         success: function(results) {
                             if (results.length > 0) {
 $('#availGroups .no_record').remove();
+                               
 /*
                                 var table = document.getElementById("availGroups");
                                 var rowCount = table.rows.length;
@@ -949,15 +950,16 @@ $('#availGroups .no_record').remove();
                                 table.deleteRow(1);
 */
                             }
-                            var isPublic = false;
+                            var isPrivate=false;
                             // Messages for this group
                             for (var j = 0; j < results.length; j++) {
                                 var groupId = results[j].id;
                                 var topicname = results[j].get("groupName");
                                 var members = results[j].get("numStudents");
                                 var maxSize = results[j].get("groupSize");
-                                var isPublic = results[j].get("isPublic");
+                                var isPrivate = results[j].get("isPrivate");
                                 var openSlots = maxSize - members;
+
 if(openSlots>0){
                                 var slots = "";
                                 for (var k = 0; k < members; k++) {
@@ -968,7 +970,7 @@ if(openSlots>0){
                                 }
 
                                 /*only show avalible group if its a public one*/
-                                if(isPublic){
+                                if(!isPrivate){
                                 	$('#availGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Details</a></div><div class='join' id='2" + groupId + "'><a href='#'>Join</a></div></td></tr>");
 
                                 /*add event listener*/
@@ -1001,13 +1003,13 @@ if(openSlots>0){
 $('#myGroups .no_record').remove();
                             }
                             // Messages for this group
-                            var isPublic = false;
+                            var isPrivate = false;
                             for (var j = 0; j < results.length; j++) {
                                 var groupId = results[j].id;
                                 var topicname = results[j].get("groupName");
                                 var members = results[j].get("numStudents");
                                 var maxSize = results[j].get("groupSize");
-                                var isPublic = results[j].get("isPublic");
+                                var isPrivate = results[j].get("isPrivate");
                                 var openSlots = maxSize - members;
                                 var slots = "";
                                 for (var k = 0; k < members; k++) {
@@ -1018,7 +1020,7 @@ $('#myGroups .no_record').remove();
                                 }
 //#available-groups-table		
 								/* Append group to table and add a private label if is*/
-								if(isPublic){
+								if(!isPrivate){
 									$('#myGroups tbody').append("<tr id='"+groupId+"'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i><span id='classname'>" + title + "</span></i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'><span>View</span></a></div><div class='join' id='2" + groupId + "'><a href='#'>Leave</a></div></td></tr>");
 								}
 								else{
@@ -3165,6 +3167,7 @@ var cur_user_id=Parse.User.current();
 
 				var latlng = $(this).find('.latlng').text().split(',');
 				var myLatLng = {lat: parseFloat( latlng[0] ), lng: parseFloat( latlng[1] )};
+                var zIndex=100-myLatLng['lat'];
 				var address = $(this).find('.location').text();
 				var class_id = $(this).find('.class_id').text();
 				var class_number = $(this).find('.class_number').text();
@@ -3189,7 +3192,7 @@ var imgTag='.png';
 					map: map,
 					title: topicName,
 optimized: false,
-zIndex: 5,
+zIndex: zIndex,
 					icon: {
 	url: 'images/class-'+class_id+'-marker'+imgTag,
 	scaledSize: new google.maps.Size(50,80),
@@ -3352,7 +3355,7 @@ location.innerHTML="Dartmouth College";
 					var group_id = $(this).attr('id');
 					var latlng = $(this).find('.latlng').text().split(',');
 					var myLatLng = {lat: parseFloat( latlng[0] ), lng: parseFloat( latlng[1] )};
-	
+	var zIndex=100-myLatLng['lat'];
 					var address = $(this).find('.location').text();
 					var class_id = $(this).find('.class_id').text();
 					var class_number = $(this).find('.class_number').text();
@@ -3377,7 +3380,7 @@ var imgTag='.png';
 						map: map,
 						title: address,
 optimized: false,
-zIndex: 5,						
+zIndex: zIndex,						
 icon: {
 	url: 'images/class-'+class_id+'-marker'+imgTag,
 	scaledSize: new google.maps.Size(50,80),
@@ -4257,12 +4260,12 @@ function submitNewGroup() {
     var Group = Parse.Object.extend("studyGroup");
     var newGroup = new Group();
 
-    var isPublic;
+    var isPrivate;
     if ($("#publicRadio").is(":checked")){
-    	isPublic=true;
+    	isPrivate=false;
     }
     else{
-    	isPublic= false;
+    	isPrivate= true;
     }
 
     newGroup.set("location_latlng", $("#ag_location_latlng").val());
@@ -4276,7 +4279,7 @@ function submitNewGroup() {
     var relation = newGroup.relation("members");
     relation.add(Parse.User.current());
     newGroup.set("numStudents", 1);
-    newGroup.set("isPublic", isPublic);
+    newGroup.set("isPrivate", isPrivate);
 
     newGroup.save(null, {
         success: function(newGroup) {
@@ -4289,7 +4292,7 @@ function submitNewGroup() {
                     var relation = groups.relation("classGroups");
                     relation.add(newGroup);
                     groups.save();
-
+//location.reload();
 
 
                 },
@@ -4299,7 +4302,7 @@ function submitNewGroup() {
                     alert("Error: Courses could not be retrieved.");
                 }
             });
-            return true;
+           // return true;
         },
         error: function(newGroup, error) {
             // Execute any logic that should take place if the save fails.
@@ -4308,7 +4311,7 @@ function submitNewGroup() {
         }
     });
 
-    return false;
+   // return false;
 
 }
 

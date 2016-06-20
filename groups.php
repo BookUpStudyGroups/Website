@@ -111,14 +111,14 @@ require_once('header.php');
 </div>
 
 <div class="members"> 
-<p class = 'membersTextHeaders'"> Group Members <p>
+    <p class = 'membersTextHeaders'> Group Members </p>
 
-<table style="width:100%" id= "membersDisplay"/>
+<table style="width:100%" id= "membersDisplay">
   
 
 </table>
 
-<table style="width:100%" />
+<table style="width:100%">
   
 
 </table>
@@ -172,7 +172,7 @@ require_once('header.php');
 
                     
 
-                    </tr></tbody>
+                   </tbody>
                   </table>
                 </div>
         </div>
@@ -183,15 +183,7 @@ require_once('header.php');
 </div>
 
 
-<script>
 
-window.onload = function() {
-
-
-
-};
-
-   </script>
 
 
 
