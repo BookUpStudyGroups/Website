@@ -70,7 +70,7 @@ $body_id = 'profilebody';
     &nbsp;
 </div>
     </div>
-<div id="profile_window" class="col-lg-2 col-md-3 col-sm-4 col-xs-12 maxwidth">
+<div id="profile_window" class="col-lg-2 col-md-3 col-sm-4 col-xs-12 maxwidth" style="display:none;">
     <h1 id="si_profile_heading" class="profile_heading"></h1>
     <div class="col-md-12 col-sm-12 col-xs-12 pull-left" id="date"></div>
     <div class="innerpage-left">

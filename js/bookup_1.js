@@ -372,6 +372,8 @@ window.location = "index.php";
 //FIND THIS, edited so gray window appears #search-grou-bo
 	if($("#map2").length){
 if($("#groupbody").length){
+    var selectedGroup;
+    var selectedColor;
 function selectGroup(idTag) {
     var groupId = idTag.slice(1);
     document.getElementById(groupId).style.outline = "thin outset #00FF7F";
@@ -496,6 +498,12 @@ $('#1'+groupId).bind("click", function() {
                                 });
 }
 function focusGroupView(idTag){
+    if (typeof selectedGroup !=undefined){
+        leaveGroupView(selectedGroup,selectedColor);
+    }
+    selectedGroup=idTag.slice(1);
+    selectedColor=$('#'+idTag.slice(1)).css("background-color");
+    
     $('#availGroups').hide("slow","swing");
 $('#myGroups tr').each(function(index){
 if(index>1){
@@ -559,7 +567,7 @@ var studyGroup = Parse.Object.extend("studyGroup");
 
     					//append member to member card 
     					$('#membersDisplay').append(
-    						"<tr class= 'memberBox'> <td><p class= 'memberNameText'><a href= '"+emailLink+"'> <img class= 'mailImg' src= 'images/mailIconBookUp.png'></a>&nbsp&nbsp"+memName+ "</p>  </td> </tr>"
+    						"<tr class= 'memberBox'> <td><p class= 'memberNameText'><a href= '"+emailLink+"'> <img class= 'mailImg' src= 'images/email.png'></a>&nbsp&nbsp"+memName+ "</p>  </td> </tr>"
     						);
 
     					console.log("appened html");
@@ -577,8 +585,7 @@ var studyGroup = Parse.Object.extend("studyGroup");
     					//pretend invite button
     					$('#membersDisplay').append(
     					"<tr> <td> <div> <p class = 'membersTextHeaders'> Add Classmate </p> </div></td>  </tr> "+
-    					"<tr><td> <input id='emailPlaceholder' type='text'placeholder=' Enter Email'></td> </tr>"+
-    					"<tr><td> <div id='submitButt'> <p id = 'inviteButtText'><p> Click to Invite! </div> </td> </tr>"
+    					"<tr><td> <img class= 'mailImg' src= 'images/add.png'>&nbsp&nbsp<input id='emailPlaceholder' type='text'placeholder=' Enter Email'></td> </tr>"
     					);
     				}
 
@@ -598,7 +605,8 @@ var studyGroup = Parse.Object.extend("studyGroup");
 
  $('#ag_classname').val($('#'+groupId+' #classname').text());
  $('#ag_topicname').val(groupName4View);
- $('#groupViewTitle').prepend(groupName4View);
+                $('#topic-title').empty();
+ $('#topic-title').append(groupName4View);
 $('#ag_room').val(results.get("location"));
 $('#ag_location_latlng').val(results.get("location_latlng"));
 
@@ -1042,7 +1050,8 @@ $('#myGroups .no_record').remove();
 }
 		var geocoder = new google.maps.Geocoder;
 		
-        var curr_sel_marker={};
+       var curr_sel_marker=undefined;
+
         var curr_sel_ind={};
         function init3(){
             	
@@ -1206,7 +1215,8 @@ var classes = Parse.Object.extend("Class");
     classQuery.find({
         success: function(results) {
             for (var i = 0; i < results.length; i++) {
-
+var totClasses=results.length;
+                var checkedClasses=0;
                 var getClassDetails = new RSVP.Promise(function(fulfill) {
                     var prof = results[i].get("prof");
                     var dep = results[i].get("department");
@@ -1252,6 +1262,9 @@ var classLength=classDetails[8];
                         success: function(results) {
 
                             // Messages for this group
+                            if(results.length==0){
+                                checkedClasses+=1;
+                            }
                             for (var j = 0; j < results.length; j++) {
 var groupId=results[j].id;
 var groupName=results[j].get('groupName');
@@ -1265,8 +1278,11 @@ var groupLength=results.length-1;
                                 $("#available-groups-table>tbody").append("<tr id='" + groupId + "'><td class='topicname'>" + groupName + "</td><td class='class_id'>" + depId + "</td><td class='group_id'>" + groupId + "</td><td class='class_name'>" + title + "</td><td class='class_number'>" + number + "</td><td class='user_id'>" + creator + "</td><td class='location'>" + location + "</td><td class='latlng'>" + latlng + "</td><td class='on_date'>" + startDate + "</td><td class='room'>" + location + "</td><td class='start_time'>" + startTime + "</td><td class='end_time'>" + endTime + "</td></tr>");
 
 if(j==groupLength){
+    checkedClasses+=1;
+    if(checkedClasses==totClasses){
 var groupDetails="All Groups Loaded";
 fulfill(groupDetails);
+    }
 }
                             }
 
@@ -1288,6 +1304,8 @@ fulfill(groupDetails);
     });
 });
 initGroups.then(function(groupDetails) {
+    init();
+
 });
 		$(window).on('load resize', function(){
 	      var winHeight = $(window).height();
@@ -1746,15 +1764,15 @@ var defaultStrokeColor='#FFFFFF';
 */
 //#4a90e6,#00FF7F #6CC8E8
 //opac 0.9,0.8
-var defaultColor='#00693E';
-var hoverColor='#00693E';
-var dblClickColor='#006633';
+var defaultColor='#009859';
+var hoverColor='#006633';
+var dblClickColor='#009859';
 var defaultOpac=1.0;
-var hoverOpac=0.6;
+var hoverOpac=0.5;
 var dblClickOpac=0.3;
 var defaultStrokeOpac=0.9;
 var defaultStrokeWeight=1.0;
-var defaultStrokeColor='#222222';
+var defaultStrokeColor='#00351F';
 var hoverStrokeOpac=0.9;
 var hoverStrokeWeight=3.0;
 var hoverStrokeColor='#00FF7F';
@@ -3002,7 +3020,9 @@ buildingNames.push("Davidson Pottery Studio");
 buildingNames.push("Lewiston Office");
 buildingNames.push("Lewiston Warehouse 1");
 buildingNames.push("Lewiston Warehouse 2");
-
+$('#center-location').autocomplete({
+    source:buildingNames
+});
 
 
 /*
@@ -3058,7 +3078,7 @@ floors.push(tmp);
 var curr_sel_building;
 for(var i=0; i<buildings.length; i++){
 
- var test=drawExcrudedShape(map, testCoords[i], 0.00005, defaultStrokeColor, defaultStrokeOpac, 0.3, "#c3cbc3", 1.0);
+ var test=drawExcrudedShape(map, testCoords[i], 0.00005, defaultStrokeColor, defaultStrokeOpac, 0.3, "#EBEFF9", 1.0);
 var shadow = new google.maps.Polygon({
     paths: shadows[i],
     strokeColor: '#000000',
@@ -3110,7 +3130,7 @@ curr_sel_building.setOptions({fillOpacity: defaultOpac,strokeWeight: defaultStro
 }
 curr_sel_building=this;
 $("#ag_room").val(this.buildingName);
-location.innerHTML=this.buildingName;    
+location.value=this.buildingName;    
 				var lat = event.latLng.lat();
 				var long = event.latLng.lng();					
 				//$("#ag_location_latlng").val();
@@ -3140,7 +3160,6 @@ location.innerHTML=this.buildingName;
 			});
 }
 var cur_user_id=Parse.User.current();
-
 			$("#available-groups-table tr").each(function(index){
 				var group_id = $(this).attr('id');
 
@@ -3173,9 +3192,9 @@ optimized: false,
 zIndex: 5,
 					icon: {
 	url: 'images/class-'+class_id+'-marker'+imgTag,
-	scaledSize: new google.maps.Size(50,50),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(25,25)
+	anchor: new google.maps.Point(25,80)
 },
 					my_group_id: group_id,
 tag: imgTag
@@ -3186,35 +3205,42 @@ tag: imgTag
 					if(curr_sel_marker!=marker){
 						marker.setIcon({
 	url: 'images/class-'+class_id+'-marker'+marker.tag,
-	scaledSize: new google.maps.Size(50,50),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(25,25)
+	anchor: new google.maps.Point(25,80)
 });
 marker.setZIndex(5);
 					}
 				});
+    //SELECTS WERE AT 54 and 27
 				marker.addListener('mouseover', function() {
 					marker.setIcon({
 	url: 'images/class-'+class_id+'-marker-select.png',
-	scaledSize: new google.maps.Size(54,54),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(27,27)
+	anchor: new google.maps.Point(25,80)
 });
 marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);				});
 				marker.addListener('dblclick', function() {
-					marker.setIcon({
+                   
+                    //marker.setAnimation(google.maps.Animation.BOUNCE);
+
+					deleteOverlays();
+                    
+                    marker.setIcon({
 	url: 'images/class-'+class_id+'-marker-select.png',
-	scaledSize: new google.maps.Size(54,54),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(27,27)
+	anchor: new google.maps.Point(25,80)
 });
 marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
 					if(typeof curr_sel_marker != 'undefined' && curr_sel_marker!=marker){
+                            //curr_sel_marker.setAnimation(null);
 						curr_sel_marker.setIcon({
 	url: 'images/class-'+curr_sel_ind+'-marker'+curr_sel_marker.tag,
-	scaledSize: new google.maps.Size(50,50),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(25,25)
+	anchor: new google.maps.Point(25,80)
 });
 curr_sel_marker.setZIndex(5);
 					}
@@ -3254,13 +3280,26 @@ curr_sel_marker.setZIndex(5);
 				
 			});//
 			
-			var bounds = new google.maps.LatLngBounds();
+			
+            var bounds = new google.maps.LatLngBounds();
 			for(i=0;i<markers.length;i++) {
 				 bounds.extend(markers[i].getPosition());
 			}//for			
 			//map.fitBounds( strictBounds );
 
 			google.maps.event.addListener(map, 'dblclick', function(event) {
+                $("#group-details-div").removeClass('open');
+                if(typeof curr_sel_marker != 'undefined'){
+                curr_sel_marker.setIcon({
+	url: 'images/class-'+curr_sel_ind+'-marker'+curr_sel_marker.tag,
+	scaledSize: new google.maps.Size(50,80),
+	origin: new google.maps.Point(0,0),
+	anchor: new google.maps.Point(25,80)
+});
+                
+curr_sel_marker.setZIndex(5);
+curr_sel_marker=undefined;
+                }
 				var lat = event.latLng.lat();
 				var long = event.latLng.lng();					
 				//$("#ag_location_latlng").val();
@@ -3341,9 +3380,9 @@ optimized: false,
 zIndex: 5,						
 icon: {
 	url: 'images/class-'+class_id+'-marker'+imgTag,
-	scaledSize: new google.maps.Size(50,50),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(25,25)
+	anchor: new google.maps.Point(25,80)
 },
 						my_group_id: group_id,
 tag: imgTag
@@ -3354,9 +3393,9 @@ tag: imgTag
 					if(curr_sel_marker!=marker){
 						marker.setIcon({
 	url: 'images/class-'+class_id+'-marker'+marker.tag,
-	scaledSize: new google.maps.Size(50,50),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(25,25)
+	anchor: new google.maps.Point(25,80)
 });
 marker.setZIndex(5);
 					}
@@ -3364,26 +3403,26 @@ marker.setZIndex(5);
 				marker.addListener('mouseover', function() {
 					marker.setIcon({
 	url: 'images/class-'+class_id+'-marker-select.png',
-	scaledSize: new google.maps.Size(54,54),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(27,27)
+	anchor: new google.maps.Point(25,80)
 });
 marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
 				});
 				marker.addListener('dblclick', function() {
 					marker.setIcon({
 	url: 'images/class-'+class_id+'-marker-select.png',
-	scaledSize: new google.maps.Size(54,54),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(27,27)
+	anchor: new google.maps.Point(25,80)
 });
 marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
 					if(typeof curr_sel_marker != 'undefined' && curr_sel_marker!=marker){
 						curr_sel_marker.setIcon({
 	url: 'images/class-'+curr_sel_ind+'-marker'+curr_sel_marker.tag,
-	scaledSize: new google.maps.Size(50,50),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(25,25)
+	anchor: new google.maps.Point(25,80)
 });
 curr_sel_marker.setZIndex(5);
 
@@ -3433,16 +3472,16 @@ curr_sel_marker.setZIndex(5);
 			});//checkbox change
         }//init
 		
-		google.maps.event.addDomListener(window, 'load', init);
+		//google.maps.event.addDomListener(window, 'load', init);
 		//MAP SCRIPT ENDS HERE
 		
 		$("#group-details-div .close").on('click', function(){
 			$("#group-details-div").removeClass('open');
 			curr_sel_marker.setIcon({
 	url: 'images/class-'+curr_sel_ind+'-marker'+curr_sel_marker.tag,
-	scaledSize: new google.maps.Size(50,50),
+	scaledSize: new google.maps.Size(50,80),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(25,25)
+	anchor: new google.maps.Point(25,80)
 });
 curr_sel_marker.setZIndex(5);
 curr_sel_marker=undefined;
@@ -3540,6 +3579,7 @@ var pointer = {
 	origin: new google.maps.Point(0,0),
 	anchor: new google.maps.Point(25,50)
 }
+
 function placeMarker(location, mapObj) {
     // first remove all markers if there are any
     deleteOverlays();
