@@ -12,7 +12,7 @@ html,body { height:100%;}
 .member-slot-full{height:10px;width:10px;border-radius:100%;margin: 1px 1px;background:#3E61C3;float:left;border: 1px solid #3E61C3;}
 F
 #classimg{border-radius:100%;margin: 0 auto;}
-#classimg:hover{background:#6CC8E8;}
+#classimg:hover{border-radius:100%; background:#6CC8E8;}
 #classinfo{margin: 0 auto;}
 #profilebody #date{
 color:#fff !important;
@@ -20,6 +20,9 @@ background:#6CC8E8 !important;
 margin: 0px 0px !important;
 padding: 7px 12px;
 
+}
+#homeBuilding img{
+    width:50%;
 }
 
 .membersTextHeaders{
@@ -328,7 +331,14 @@ margin-top:-57px;
 
 /*============about us page======================*/
 
-.white_bg { background:#fff; float:left; width:100%; padding:50px 0;}
+#groupbody{
+background:url(../images/whitepolybg.png) no-repeat bottom center;
+	background-size:cover;
+	background-attachment:fixed;
+}
+.white_bg { background:url(../images/whitepolybg.png) no-repeat bottom center;
+	background-size:cover;
+	background-attachment:fixed; float:left; width:100%; padding:50px 0;}
 .cms { float:left; width:100%;}
 .cms h1 { font-size:30px; text-transform:uppercase; color:#4b89ad; text-align:center; padding:0 0 30px 0; margin:0px;}
 .cms p { margin-bottom:30px; float:left; width:100%; line-height:24px; font-size:13px; color:#333; text-align:justify;}
@@ -434,7 +444,7 @@ background: #e5f8ff;
 .slider_section .profile_sec .top_four_icons img { margin:3vh 0;}
 .slider_section .profile_sec .htop_four_icons img { margin:3vh 0;}
 
-.notification, .groups-css { float:left; width:100%; margin:0 0 30px 0; background:#fff; border-radius:5px; padding:5px; min-height:330px;}
+.notification, .groups-css { float:left; width:100%; margin:0 0 30px 0; background:rgba(0,0,0,0); border-radius:5px; padding:5px; min-height:330px;}
 .notification .greenbg, .groups-css .greenbg { background:#85cf85; padding:8px 20px; text-transform:uppercase; text-align:left; color:#fff; font-size:20px; border-radius:5px 5px 0px 0px;}
 .notification table td, .groups-css table td { padding:10px 20px; font-size:14px; color:#777;}
 .notification table tr:nth-child(even), .groups-css table tr:nth-child(even) { background:#f3f3f3; border-radius:5px;}

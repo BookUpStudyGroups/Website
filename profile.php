@@ -11,14 +11,16 @@ $body_id = 'profilebody';
 <a href=#>
 <img src="images/logo.png" alt="BookUp" title="BookUp">
 </a>
+    <div id="homeBuilding">
+    <img src="images/polybuilding.png" alt="BookUp" title="BookUp">
+    </div>
+
 </div>
   <div class="profile_sec">
     <div class="col-md-12" id="home_spacer">
       <div class="row">
-            <div id="spacer">&nbsp;</div>
         </div>  
 <div class="row">
-            <div id="spacer">&nbsp;</div>
         </div>
       <!--<div class="col-md-5 col-sm-12 col-xs-12 pull-right">
               <div class="notification">
