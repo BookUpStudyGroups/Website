@@ -21,6 +21,20 @@ margin: 0px 0px !important;
 padding: 7px 12px;
 
 }
+.home_btn_label{
+    background:#3E61C3;
+    color:white;
+    font-weight:600;
+    font-size:30px;
+    border-radius:0px 0px 50px 50px;
+    margin-bottom:30px;
+    //margin-right:10px;
+    //margin-left:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    
+    -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;
+}
 #homeBuilding img{
     width:50%;
 }
@@ -232,14 +246,17 @@ margin-left:30px;
 .navbar-right {float: right !important;}
 .bookup {float:left; width:100%;}
 .top_four_icons { float:left; width:100%;}
-.top_four_icons a { display:block; text-align:center; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; }
+.top_four_icons a { display:block; text-align:center; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;}
 .top_four_icons a img { width:65%;}
 .top_four_icons a:hover { transform:scale(1.1);}
 
-.htop_four_icons { float:left; width:100%;}
-.htop_four_icons a { display:block; text-align:center; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; }
-.htop_four_icons a img { width:65%;}
-.htop_four_icons a:hover { transform:scale(1.1);}
+.htop_four_icons { float:left; width:100%; }
+.htop_four_icons a { display:block; text-align:center; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; border-radius:50px; background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgb(108, 200, 232) 200%), url(../images/polyblue.png);}
+.htop_four_icons a img { width:65%;  -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;}
+.htop_four_icons a:hover { transform:scale(1.05);background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgb(108, 200, 232) 100%), url(../images/polyblue.png);}
+.htop_four_icons a:hover .home_btn_label{
+background:#6CC8E8;
+}
 
 .slider_section { float:left; min-height:600px; width:100%;  background:url(../images/polybackground.png) no-repeat center center; background-size:cover; background-attachment:fixed; }
 .overlay-table {/* text-align:center; padding:50px 0 200px 0;*/ min-height:45vh;}
@@ -442,7 +459,7 @@ background: #e5f8ff;
 /*.profile_sec .pull-left { margin-left:-5%;}
 .profile_sec .pull-right { margin-right:-5%;}*/
 .slider_section .profile_sec .top_four_icons img { margin:3vh 0;}
-.slider_section .profile_sec .htop_four_icons img { margin:3vh 0;}
+.slider_section .profile_sec .htop_four_icons img { margin:3vh 0 1vh 0;}
 
 .notification, .groups-css { float:left; width:100%; margin:0 0 30px 0; background:rgba(0,0,0,0); border-radius:5px; padding:5px; min-height:330px;}
 .notification .greenbg, .groups-css .greenbg { background:#85cf85; padding:8px 20px; text-transform:uppercase; text-align:left; color:#fff; font-size:20px; border-radius:5px 5px 0px 0px;}

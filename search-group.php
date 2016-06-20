@@ -131,7 +131,6 @@ $body_id = 'search_group_body';
 <div class="form-group">
               <label for="ag_size">Max Group Size</label>
               <select class="form-control" name="ag_size" id="ag_size">
-				      <option value='2'>2</option>
 <option value='3'>3</option>
 <option value='4'>4</option>
 <option value='5'>5</option>
