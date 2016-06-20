@@ -3167,7 +3167,7 @@ var cur_user_id=Parse.User.current();
 
 				var latlng = $(this).find('.latlng').text().split(',');
 				var myLatLng = {lat: parseFloat( latlng[0] ), lng: parseFloat( latlng[1] )};
-                var zIndex=100-myLatLng['lat'];
+                var zIndex=200-myLatLng['lat'];
 				var address = $(this).find('.location').text();
 				var class_id = $(this).find('.class_id').text();
 				var class_number = $(this).find('.class_number').text();
@@ -3190,7 +3190,7 @@ var imgTag='.png';
 				var marker = new google.maps.Marker({
 					position: myLatLng,
 					map: map,
-					title: topicName,
+					title: zIndex.toString(),
 optimized: false,
 zIndex: zIndex,
 					icon: {
@@ -3212,7 +3212,7 @@ tag: imgTag
 	origin: new google.maps.Point(0,0),
 	anchor: new google.maps.Point(25,80)
 });
-marker.setZIndex(5);
+marker.setZIndex(parseInt(marker.title));
 					}
 				});
     //SELECTS WERE AT 54 and 27
@@ -3245,7 +3245,7 @@ marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
 	origin: new google.maps.Point(0,0),
 	anchor: new google.maps.Point(25,80)
 });
-curr_sel_marker.setZIndex(5);
+curr_sel_marker.setZIndex(parseInt(curr_sel_marker.title));
 					}
 					curr_sel_marker=marker;
 					curr_sel_ind=class_id;
@@ -3300,7 +3300,7 @@ curr_sel_marker.setZIndex(5);
 	anchor: new google.maps.Point(25,80)
 });
                 
-curr_sel_marker.setZIndex(5);
+curr_sel_marker.setZIndex(parseInt(curr_sel_marker.title));
 curr_sel_marker=undefined;
                 }
 				var lat = event.latLng.lat();
@@ -3400,7 +3400,7 @@ tag: imgTag
 	origin: new google.maps.Point(0,0),
 	anchor: new google.maps.Point(25,80)
 });
-marker.setZIndex(5);
+marker.setZIndex(parseInt(curr_sel_marker.title));
 					}
 				});
 				marker.addListener('mouseover', function() {
@@ -3427,7 +3427,7 @@ marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
 	origin: new google.maps.Point(0,0),
 	anchor: new google.maps.Point(25,80)
 });
-curr_sel_marker.setZIndex(5);
+curr_sel_marker.setZIndex(parseInt(curr_sel_marker.title));
 
 					}
 					curr_sel_marker=marker;
@@ -3486,7 +3486,7 @@ curr_sel_marker.setZIndex(5);
 	origin: new google.maps.Point(0,0),
 	anchor: new google.maps.Point(25,80)
 });
-curr_sel_marker.setZIndex(5);
+curr_sel_marker.setZIndex(parseInt(curr_sel_marker.title));
 curr_sel_marker=undefined;
 		});
 		
@@ -3789,7 +3789,7 @@ function addGroupValidation()
 
 	$("#ag_submit").text("Processing New Study Group...");
 	//$('#ag_submit').attr('disabled','disabled');
-	$.ajax({
+	/*$.ajax({
 		url: "addgroupajax.php",
 		method: "POST",
 		data: $("#addgroupform").serialize(), 
@@ -3811,6 +3811,7 @@ function addGroupValidation()
         	
     	}
 	});
+    */
 
 	return false;
 }//addGroupValidation()
@@ -4289,10 +4290,11 @@ function submitNewGroup() {
             var classQuery = new Parse.Query(classes);
             classQuery.get($("#ag_class").val(), {
                 success: function(groups) {
+                    alert('Added ' + newGroup.id);
                     var relation = groups.relation("classGroups");
                     relation.add(newGroup);
                     groups.save();
-//location.reload();
+location.reload();
 
 
                 },

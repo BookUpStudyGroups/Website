@@ -22,8 +22,8 @@ padding: 7px 12px;
 
 }
 .home_btn_label{
-    background:#3E61C3;
-    color:white;
+   // background:#3E61C3;
+     background:rgba(0,0,0,0);
     font-weight:600;
     font-size:30px;
    // border-radius:0px 0px 50px 50px;
@@ -253,9 +253,9 @@ margin-left:30px;
 .htop_four_icons { float:left; width:100%; }
 .htop_four_icons a { display:block; text-align:center; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; border-radius:50px; }
 .htop_four_icons a img { width:65%;  -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;}
-.htop_four_icons a:hover { transform:scale(1.05);background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,white 100%), url(../images/polyblue.png);}
+.htop_four_icons a:hover { transform:scale(1.05);background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,white 90%), url(../images/polyblue.png);}
 .htop_four_icons a:hover .home_btn_label{
-background:#6CC8E8;
+//background:#6CC8E8;
 }
 
 .slider_section { float:left; min-height:600px; width:100%;  background:url(../images/polybackground.png) no-repeat center center; background-size:cover; background-attachment:fixed; }

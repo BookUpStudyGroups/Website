@@ -96,7 +96,7 @@ $body_id = 'search_group_body';
 		<div class="close"><i class="fa fa-times"></i></div>
   	<div class="reg-title">Add New Group</div>
         <div class="login_box registration" id="createGroupInnerId">
-          <form method="post" action="" id="addgroupform" onsubmit="return false; submitNewGroup();">
+          <form method="post" action="" id="addgroupform" onsubmit="submitNewGroup();return false; ">
             
             <div class="form-group">
               <label for="ag_class">Class Name</label>
