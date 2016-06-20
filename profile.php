@@ -9,7 +9,7 @@ $body_id = 'profilebody';
 <div class="slider_section">
 <div class="logo-home">
 <a href=#>
-<img src="images/logo.png" alt="BookUp" title="BookUp">
+<!--<img src="images/logo.png" alt="BookUp" title="BookUp">-->
 </a>
     <div id="homeBuilding">
     <img src="images/polybuilding.png" alt="BookUp" title="BookUp">
