@@ -12,7 +12,7 @@ $body_id = 'profilebody';
 <!--<img src="images/logo.png" alt="BookUp" title="BookUp">-->
 </a>
     
-    <div id="quote_section">BOOKUP PILOT PROGRAM 16X</div>
+    <div id="quote_section">BOOKUP PILOT PROGRAM 16X @DARTMOUTH</div>
     <div id="homeBuilding">
         <a href="search-group.php">
             <img src="images/polybuilding.png" alt="BookUp" title="BookUp"></a>
@@ -55,7 +55,7 @@ $body_id = 'profilebody';
               </div>
             </div> -->
     </div>
-<div id="slogan_section">Studying, Done Skillfully.</div>
+<div id="slogan_section">Studying Made Simple.</div>
       
     <div id="picons" class="htop_four_icons">
       <div class="container">

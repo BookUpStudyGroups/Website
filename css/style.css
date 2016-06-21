@@ -9,11 +9,14 @@ body { padding:0px; margin:0px;/* background:#e5f8ff;*/ background:#fff; color:#
 html,body { height:100%;}
 #quote_section{
     font-weight:600;
-    font-size:20px;
+    font-size:35px;
     text-align:center;
+    color:#FFFFFF;
+    background:rgb(108,200,232);
     width:100%;
     padding-top:20px;
-    padding-bottom:50px;
+    padding-bottom:20px;
+    margin-bottom:40px;
 }
 #slogan_section{
     font-weight:900;
@@ -60,7 +63,7 @@ padding: 7px 12px;
      background:rgba(0,0,0,0);
     color:#000000;
     font-weight:600;
-    font-size:30px;
+    font-size:20px;
     text-align:center;
     letter-spacing:4px;
    // border-radius:0px 0px 50px 50px;
@@ -280,7 +283,7 @@ margin-left:30px;
 #profile_window {max-width:300px; min-width:260px;position:absolute;top:60px;left:0px;}
 #header { background:rgba(0,0,0,0); float:left; width:100%;}
 #header.home { padding:0;}
-.logo-home { padding:20px 0 0; text-align:center;}
+.logo-home { padding:0px 0 0; text-align:center;}
 #navigation{background:rgba(0,0,0,0); margin-left:auto; margin-right:auto;}
 #navigation ul {background: #3E61C3; /*margin-top:20px;*/}
 #navigation ul li { list-style-type:none; color:#333; font-size:14px; margin:0 0px;}
