@@ -7,7 +7,33 @@ a { -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-
 a:hover { text-decoration:none;}
 body { padding:0px; margin:0px;/* background:#e5f8ff;*/ background:#fff; color:#000000 !important; font-family: "Mundo",Arial,Helvetica; font-weight:400;}
 html,body { height:100%;}
-
+#quote_section{
+    font-weight:600;
+    font-size:20px;
+    text-align:center;
+    width:100%;
+    padding-top:20px;
+    padding-bottom:50px;
+}
+#slogan_section{
+    font-weight:900;
+    font-size:35px;
+    text-align:center;
+    width:100%;
+    padding-top:20px;
+    padding-bottom:50px;
+}
+#header-btns{
+    //background-image:url(../images/polyblue.png);
+    //background-size:1000px;
+    width:100%;
+}
+#header-cont{
+     background-image:url(../images/polyblue.png);
+    background-size:1000px;
+    width:100%;
+    margin:0;
+}
 .member-slot-empty{height:10px;width:10px;border-radius:100%;margin: 1px 1px;background:#FFFFFF;float:left;border: 1px solid #3E61C3;}
 .member-slot-full{height:10px;width:10px;border-radius:100%;margin: 1px 1px;background:#3E61C3;float:left;border: 1px solid #3E61C3;}
 F
@@ -21,16 +47,27 @@ margin: 0px 0px !important;
 padding: 7px 12px;
 
 }
+#homeBuilding a img{
+    //transform:rotateX(-20deg);
+    -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out;
+}
+#homeBuilding a img:hover{
+    transform:scale(1.03);
+     
+}
 .home_btn_label{
    // background:#3E61C3;
      background:rgba(0,0,0,0);
+    color:#000000;
     font-weight:600;
     font-size:30px;
+    text-align:center;
+    letter-spacing:4px;
    // border-radius:0px 0px 50px 50px;
-    margin-bottom:30px;
-    //margin-right:10px;
-    //margin-left:10px;
-    padding-top:5px;
+    margin-bottom:40px;
+    margin-right:-10px;
+    margin-left:-10px;
+    padding-top:15px;
     padding-bottom:5px;
     
     -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;
@@ -224,7 +261,16 @@ border-radius:0px 15px 15px 0px;
 margin-left:30px;
     border:1px solid #ACD8F0; }
 
-
+.img_cont{
+    background-image:url(../images/polyblue.png);
+    background-size:800px;
+    margin: auto;
+    padding: 0px 0px 0px 0px;
+    border-radius:100%;
+    width:65%;
+    float:none;
+    
+}
 
 
 #create-group-div #ui-datepicker-div
@@ -232,13 +278,14 @@ margin-left:30px;
 	right: auto !important;	
 }
 #profile_window {max-width:300px; min-width:260px;position:absolute;top:60px;left:0px;}
-#header { background:#3E61C3; float:left; width:100%;}
+#header { background:rgba(0,0,0,0); float:left; width:100%;}
 #header.home { padding:0;}
 .logo-home { padding:20px 0 0; text-align:center;}
-#navigation ul {background: #3E61C3;/*margin-top:20px;*/}
-#navigation ul li { list-style-type:none; color:#333; font-size:14px; margin:0 7px;}
-#navigation ul li a { text-align: left; font-size:14px; color:#fff; padding:7px 15px;     letter-spacing: 0.5px;}
-#navigation ul li a:hover, #navigation ul li a.active { background:#6CC8E8; color:#fff; transform:scale(1.1);/*border-bottom:3px solid #FFF;*/ }
+#navigation{background:rgba(0,0,0,0); margin-left:auto; margin-right:auto;}
+#navigation ul {background: #3E61C3; /*margin-top:20px;*/}
+#navigation ul li { list-style-type:none; color:#333; font-size:14px; margin:0 0px;}
+#navigation ul li a { text-align: left; font-size:20px; color:#fff; padding:17px 17px;     letter-spacing: 0.5px; }
+#navigation ul li a:hover, #navigation ul li a.active { background:#6CC8E8; color:#fff; transform:scale(1.05);border-bottom: 3px solid #6CC8E8;/*border-bottom:3px solid #FFF;*/ }
 #navbar { padding:0px;}
 .navbar-brand{  color:#fff !important; letter-spacing:4px; line-height: 1.42857143 !important; height: auto !important; padding: 5px 0px 0px 0px !important;)
 }
@@ -250,12 +297,12 @@ margin-left:30px;
 .top_four_icons a img { width:65%;}
 .top_four_icons a:hover { transform:scale(1.1);}
 
-.htop_four_icons { float:left; width:100%; }
+.htop_four_icons { float:left; width:100%; background:rgba(0,0,0,0.1);padding-top:50px;}
 .htop_four_icons a { display:block; text-align:center; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; border-radius:50px; }
-.htop_four_icons a img { width:65%;  -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;}
-.htop_four_icons a:hover { transform:scale(1.05);background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,white 90%), url(../images/polyblue.png);}
-.htop_four_icons a:hover .home_btn_label{
-//background:#6CC8E8;
+.htop_four_icons a img { width:100%;  -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;background-image:url(../images/polyblue.png); border-radius:100%; opacity:1.0;}
+.htop_four_icons a:hover { transform:scale(1.05);}
+.htop_four_icons a:hover img{
+    opacity:0;
 }
 
 .slider_section { float:left; min-height:600px; width:100%;  background:url(../images/polybackground.png) no-repeat center center; background-size:cover; background-attachment:fixed; }
@@ -331,7 +378,8 @@ margin-left:30px;
 .contactsec .contact-form .form-group input[type="submit"]:hover { background:#6CC8E8;}
 
 .copyrite {
-background: #3E61C3;
+ background-image:url(../images/polyblue.png);
+    background-size:1000px;
 float: left;
 height: 57px;
 min-height: 50px;
@@ -349,6 +397,11 @@ margin-top:-57px;
 /*============about us page======================*/
 
 #groupbody{
+background:url(../images/whitepolybg.png) no-repeat bottom center;
+	background-size:cover;
+	background-attachment:fixed;
+}
+#matchbody{
 background:url(../images/whitepolybg.png) no-repeat bottom center;
 	background-size:cover;
 	background-attachment:fixed;
@@ -459,7 +512,7 @@ background: #e5f8ff;
 /*.profile_sec .pull-left { margin-left:-5%;}
 .profile_sec .pull-right { margin-right:-5%;}*/
 .slider_section .profile_sec .top_four_icons img { margin:3vh 0;}
-.slider_section .profile_sec .htop_four_icons img { margin:3vh 0 1vh 0;}
+.slider_section .profile_sec .htop_four_icons img {}
 
 .notification, .groups-css { float:left; width:100%; margin:0 0 30px 0; background:rgba(0,0,0,0); border-radius:5px; padding:5px; min-height:330px;}
 .notification .greenbg, .groups-css .greenbg { background:#85cf85; padding:8px 20px; text-transform:uppercase; text-align:left; color:#fff; font-size:20px; border-radius:5px 5px 0px 0px;}
@@ -546,17 +599,18 @@ text-align: center;
     float:left;
 
 }
-
+/*
 #submitButt{
     color:white;
     background: #6cc8e8;
     border-radius: 0 10px 10px 0;
     width:30px;
 }
+
 #submitButt:hover{
     background: #3E61C3;
 }
-
+*/
 #inviteText{
     color: #fff;
     font-style: bold;

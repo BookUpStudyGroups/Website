@@ -36,11 +36,12 @@
 
 <div id="wrap" class="bookup">
   <header id="header">
-    <div class="container" id="header-cont">
+    <div class="container">
 
 
 
-      <div class="row" id="header-btns"><div class="col-md-2 col-sm-2"><a class="navbar-brand" href="index.php"><b>BOOKUP</b></a></div>
+      <div class="row">
+        <div class="col-md-2 col-sm-2"><a class="navbar-brand" href="index.php"><b>BOOKUP</b></a></div>
         <div class="col-md-10 col-sm-10">
           <nav id="navigation" class="pull-right">
             <div class="navbar-header"> <a href="#"></a>
@@ -50,16 +51,16 @@
             
             </div>
                     <div class="navbar-collapse collapse" id="navbar">
-              <ul class="nav navbar-nav">
-                <li><a href="index.php" title="Home" id="Home">&nbsp;HOME</a></li>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.php" title="Home" id="Home"><img width="15px" src="images/home.png" alt="" >&nbsp;HOME</a></li>
                
                 
-                <li style="display:none;"><a href='search-group.php' title='Search group' >&nbsp;NAVIGATOR</a></li><li style="display:none;"><a href='groups.php' title='View Group' >&nbsp;GROUPS</a></li><li style="display:none;"><a href='matches.php' title='View Study Buddies' >&nbsp;MATCHES</a></li><li id='logout' style="display:none;"><a href='logout.php' title='Log out'>&nbsp;LOG OUT</a></li>
+                <li style="display:none;"><a href='search-group.php' title='Search group' ><img width='15px' src='images/navigate.png' alt='' >&nbsp;NAVIGATOR</a></li><li style="display:none;"><a href='groups.php' title='View Group' ><img width='15px' src='images/sg.png' alt='' >&nbsp;STUDY GROUPS</a></li><li style="display:none;"><a href='matches.php' title='View Study Buddies' ><img width='15px' src='images/sb.png' alt='' >&nbsp;STUDY BUDDIES</a></li><li id='logout' style="display:none;"><a href='logout.php' title='Log out'><img width='15px' src='images/logout.png' alt='' >&nbsp;LOG OUT</a></li>
                     
-<li style="display:none;"><a href='register.php' title='Register' >&nbsp;REGISTER</a></li><li style="display:none;"><a href='login.php' title='Login' >&nbsp;LOGIN</a></li>                
+<li style="display:none;"><a href='register.php' title='Register' ><img width='15px' src='images/register.png' alt='' >&nbsp;REGISTER</a></li><li style="display:none;"><a href='login.php' title='Login' ><img width='15px' src='images/login.png' alt='' >&nbsp;LOGIN</a></li>                
                 
                 
-                <li><a href="contact.php" title="Contact Us" >&nbsp;FEEDBACK</a></li>
+                <li><a href="contact.php" title="Contact Us" ><img width="15px" src="images/feedback.png" alt="" >&nbsp;FEEDBACK</a></li>
               </ul>
             </div>
           </nav>

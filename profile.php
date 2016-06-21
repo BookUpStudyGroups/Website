@@ -11,8 +11,11 @@ $body_id = 'profilebody';
 <a href=#>
 <!--<img src="images/logo.png" alt="BookUp" title="BookUp">-->
 </a>
+    
+    <div id="quote_section">BOOKUP PILOT PROGRAM 16X</div>
     <div id="homeBuilding">
-    <img src="images/polybuilding.png" alt="BookUp" title="BookUp">
+        <a href="search-group.php">
+            <img src="images/polybuilding.png" alt="BookUp" title="BookUp"></a>
     </div>
 
 </div>
@@ -52,21 +55,23 @@ $body_id = 'profilebody';
               </div>
             </div> -->
     </div>
-
+<div id="slogan_section">Studying, Done Skillfully.</div>
+      
     <div id="picons" class="htop_four_icons">
       <div class="container">
         
         <div class="row">
 
-          <div class="col-md-4 col-sm-4"> <a href="matches.php"><img alt="Request a Study Buddy" title="Request a Study Buddy" src="images/buddy.png" ><div class="home_btn_label">Request a Study Buddy</div></a> </div>
+            <div class="col-md-4 col-sm-4"> <a href="matches.php"><div class="img_cont"><img alt="Request a Study Buddy" title="Request a Study Buddy" src="images/buddy.png" ></div></a> <div class="home_btn_label">REQUEST A<br>Study Buddy</div></div>
 
-          <div class="col-md-4 col-sm-4"> <a href="search-group.php"><img alt="Find a Study Spot" title="Find a Study Spot" src="images/groupstudy.png" ><div class="home_btn_label">Find a Study Group</div></a> </div>
-          <div class="col-md-4 col-sm-4"> <a href="https://docs.google.com/forms/d/1JuWdTOK_GqX87twid4A0nn1V2seZsVwX1QPHdfKq6Hg/viewform"><img alt="Request a Tutor" title="Request a Tutor" src="images/tutor.png" ><div class="home_btn_label">Request a Tutor</div></a> </div>
+            <div class="col-md-4 col-sm-4"> <a href="groups.php"><div class="img_cont"><img alt="Find a Study Spot" title="Find a Study Spot" src="images/groupstudy.png" ></div></a><div class="home_btn_label">FIND A<br>Study Group</div> </div>
+            <div class="col-md-4 col-sm-4"> <a href="http://www.dartmouth.edu/~acskills/peertutoring.html"><div class="img_cont"><img alt="Request a Tutor" title="Request a Tutor" src="images/tutor.png" ></div></a> <div class="home_btn_label">REQUEST A<br>Course Tutor</div></div>
         </div>
 
-
       </div>
-<div class="form-group">
+<img src="https://media4.giphy.com/media/VOws6TqlPsBMs/200.gif" id="shark_secret" width="30px">
+
+        <div class="form-group">
     &nbsp;
 </div>
     </div>
@@ -79,8 +84,8 @@ $body_id = 'profilebody';
             <div class="viewmatch search_study">
                 <div class="row">
                     <div class="col-md-4 col-sm-4"><a href="matches.php"><img alt="Request a Study Buddy" title="Request a Study Buddy" src="images/buddy.png" ><div class="home_btn_label">Request a Study Buddy</div></a> </div>
-                    <div class="col-md-4 col-sm-4"><a href="search-group.php"><img alt="Find a Study Spot" title="Find a Study Spot" src="images/groupstudy.png" ><div class="home_btn_label">Find a Study Group</div></a> </div>
-                    <div class="col-md-4 col-sm-4"><a href="https://docs.google.com/forms/d/1JuWdTOK_GqX87twid4A0nn1V2seZsVwX1QPHdfKq6Hg/viewform"><img alt="Request a Tutor" title="Request a Tutor" src="images/tutor.png" ><div class="home_btn_label">Request a Tutor</div></a></div>
+                    <div class="col-md-4 col-sm-4"><a href="groups.php"><img alt="Find a Study Spot" title="Find a Study Spot" src="images/groupstudy.png" ><div class="home_btn_label">Find a Study Group</div></a> </div>
+                    <div class="col-md-4 col-sm-4"><a href="http://www.dartmouth.edu/~acskills/peertutoring.html"><img alt="Request a Tutor" title="Request a Tutor" src="images/tutor.png" ><div class="home_btn_label">Request a Tutor</div></a></div>
                 </div>
             </div>
             <div class="profile-sec-3">
@@ -111,6 +116,7 @@ $body_id = 'profilebody';
                     </div>
 <div id="spacer">&nbsp;</div>
 <div id="spacer">&nbsp;</div>
+                    
                 </div>
 
             </div>

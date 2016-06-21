@@ -1,88 +1,190 @@
 <?php 
 $body_id = 'matchbody';
-
 require_once('header.php'); 
 ?>
+<script src="js/parse-1.6.14.js"></script>
 <div class="white_bg">
-	<div class="container">
-     
+	<div class="container" val="">
+      
           <div class="row successmsg">
+              
           </div> 
-      
-      
+    
+       
+    
           <div class="row errormsg">
-             
+              
           </div> 
      
-<div class="col-md-12 col-sm-12 col-xs-12" id=placeholder>
-        <div class="row" id="button_row">
-<h2>Study Buddy Matchmaking Coming Soon!</h2>
-</br>
+<div class="col-xs-12 col-md-6 col-lg-6 col-sm-12" id="details" title="" style="display: none;">
+			
+        	<div title="" >
+      
+		<div class="reg-title" id= "groupViewTitle">
+<div id="topic-title"></div>
+         <ul id= "groupNavBar">
+             <li class="groupNavElem" id= "detailsLi"><a href="#"><div class="img" id="chat-icon"> <img src= "images/detail.png" width="40px" alt=""></div>Details</a>
+        </li>
+            <li class="groupNavElem" id= "messagesLi"><a href="#">
+                <div class="img" id="chat-icon"> <img src= "images/chat.png" width="40px" alt=""></div>Messages</a></li> 
+             <li class="groupNavElem" id= "membersLi"> <a href="#"><div class="img" id="chat-icon"> <img src= "images/member.png" width="40px" alt=""></div>Members</a></li>
+      </ul>
+
+</div>
+<div id="card">
+<div class="details"> 
+        <div class="login_box registration">
+          <form method="post" action="" id="addgroupform" onsubmit="return editGroupValidation();">
+            <input type="hidden" name="action" value="editgroup" />
+<input type="hidden" id="maptype" value="detail"/>
+            <input type="hidden" name="hdngroupid" id="hdngroupid" value="" />
+
+            <div class="form-group">
+              <label for="ag_class">Class Name</label>
+ <input type="text" readonly="readonly" class="form-control" placeholder="Select Class" name="ag_topicname" id="ag_classname" value="">
+            </div>
+            <div class="form-group">
+              <label for="ag_topicname">Topic Name</label>
+              <input type="text" readonly="readonly" class="form-control" placeholder="Enter Topic Name" name="ag_topicname" id="ag_topicname" value="<">
+            </div>
+
+            <div class="form-group">
+              <label for="ag_public">Group Type</label>
+              <input type="text" readonly="readonly" class="form-control" placeholder="Enter Room no." name="ag_public" id="ag_public" value="">
+            </div>
+
+            <div class="form-group">
+              <label for="ag_date">Date</label>
+              <input type="text" readonly="readonly" class="form-control" name="ag_date" id="ag_date" value="">
+            </div>
+            <div class="form-group">
+            <div id="time-range">
+            	
+                <label>Time: <span class="slider-time">
+<input type="text" readonly="readonly" class="form-control" name="ag_time" id="ag_time" value="">
+
+           
+                </label>
+                
+                
+            </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="ag_room">Room Number</label>
+              <input type="text" readonly="readonly" class="form-control" placeholder="Enter Room no." name="ag_room" id="ag_room" value="">
+            </div>
+
+            <div class="form-group">
+              <label for="ag_location">Location</label>
+              <div id="map2"></div>
+ <input type="hidden" id="maptype" value="detail">
+<input type="hidden" id="ag_location" value="">
+              <input type="hidden" class="form-control" name="ag_location" id="ag_location_latlng" value="43.704472,-72.288951" readonly="true">
+            </div>
+<div class="edit">
+<a href="http://libcal.dartmouth.edu/booking/studyrooms">Reserve a Room in Baker-Berry</a>
+</div>
+<div class="edit">
+<a href="http://oracle-www.dartmouth.edu/dart/groucho/dartr25_wvprod.startup">Reserve a Room Elsewhere on Campus</a>
+</div>
+
+<div class="moredetailsbtn">
+            
+            </div>
+          </form>
+
+        </div>
+</div>
+<div class="messages"> 
+<div id="wrapper" title="">
+
+
+
+ 
+     
+    <div id="chatbox"></div>
+     
+        <input name="usermsg" type="text" id="usermsg" size="63" />
+        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
 </div>
 </div>
+
+<div class="members"> 
+    <p class = 'membersTextHeaders'> Group Members </p>
+
+<table style="width:100%" id= "membersDisplay">
+  
+
+</table>
+
+<table style="width:100%">
+  
+
+</table>
+
+</div>
+      </div>
+</div>
+</div>
+
 
     	<div class="row">
         <div class="col-md-6 col-sm-6">
         <div class="ms-group groups-css">
 
-        
         <div class="responsive-table">
-                  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <table width="100%" id="myGroups" cellspacing="0" cellpadding="0" border="0">
                     <tbody>
                       <tr>
                         <td class="greenbg" colspan="3">My Study Buddies</td>
                       </tr>
-                     
+ 
                           <tr>
                             <td colspan="3" class="no_record">No Study Buddies Found.</td>
                           </tr>
-                     
-                        <tr>
-                          <td width="70%">
 
-<div class="col-sm-5 col-xs-5 col-md-4 col-lg-3">
-<img class="center-block" id="classimg" width=100% src="images/.png">
-</div>
-<div class="col-sm-7 col-xs-7 col-md-8 col-lg-9">
- 
-<div class="img"><img width="50px" src="" alt=""></div>
-<div class="name"></div>
+                      
 
-                            <br />
-                            <i></i>
-</div>
-                          </td>
-                          <td width="30%">
-<div class="edit"><a href="#">Details</a></div>
+                      
 
-                              <div class="delete"><a href="matches.php?action=delete&id=">Unmatch</a></div>
-                            
-                          </td>
-                        </tr>
-
-
-                      <tr>
-                    </tr></tbody>
+                      </tbody>
                   </table>
                 </div>
         </div>
+
         </div>
+
         <div class="col-md-6 col-sm-6">
         <div class="js-group groups-css">
         <div class="responsive-table">
-                  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <table width="100%" id="availGroups" cellspacing="0" cellpadding="0" border="0">
                     <tbody>
                       <tr>
-                        <td class="greenbg" colspan="3">Past Matches</td>
+                        <td class="greenbg" colspan="3">Find a Study Buddy</td>
                       </tr>
-                      </tbody>
+                          
+                          <tr>
+                            <td colspan="3" class="no_record">ERROR: No Classes Found.</td>
+                          </tr>
+                      
+                        
+
+                    
+
+                   </tbody>
                   </table>
                 </div>
         </div>
         </div>
         </div>
     </div>
+    </div>
 </div>
 
-   
+
+
+
+
+
 <?php require_once('footer.php'); ?>
