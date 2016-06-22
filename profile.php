@@ -55,7 +55,7 @@ $body_id = 'profilebody';
               </div>
             </div> -->
     </div>
-<div id="slogan_section">Studying Made Simple.</div>
+<div id="slogan_section">Studying Made Simple.<br><a id="home-down" href="#picons"><i class="fa fa-chevron-down" id="home-down" aria-hidden="true"></i></a></div>
       
     <div id="picons" class="htop_four_icons">
       <div class="container">
