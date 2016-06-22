@@ -507,6 +507,7 @@ $('#1'+groupId).bind("click", function() {
                                     focusGroupView(this.id)
                                 });
 }
+
 function focusGroupView(idTag){
     if (typeof selectedGroup !=undefined){
         leaveGroupView(selectedGroup,selectedColor);
@@ -597,49 +598,22 @@ var studyGroup = Parse.Object.extend("studyGroup");
     					"<tr> <td> <div> <p class = 'membersTextHeaders'> Add Classmate </p> </div></td>  </tr> "+
     					"<tr><td><img id='submitButt' class= 'mailImg' src= 'images/add.png'>&nbsp&nbsp<input id='emailPlaceholder' type='text'placeholder=' Enter Email'></td> </tr>"
     					);
-                              //for invite button click
+                        
+                     	//for invite button click
         				$('#submitButt').click( function(){
-
-        					//create parse invite object
-        					var PrivateInvite = Parse.Object.extend("PrivateInvite");
-        					var invite = new PrivateInvite();
- 
-        					 //get varibles for email and parse object
-         					var email= $('#emailPlaceholder').val();
-         					var Class= $('ag_classname').text();
-
-
-
-    						//set data for parse object
-    						invite.set("Email", email);
-    						invite.save(null, {
-  								success: function(PrivateInvite) {
-  									
-								    // get objectID for invite
-								    var id=PrivateInvite.id;
-
-								    //vars for email bosy+ subject		
-    								var inviteLink= document.URL+"?group="+groupId+"%26objectId="+id;;
-    								var link= ("Click here the link to join!").link(inviteLink);
-
-    								var subject= "You've been Invited to Study!";
-    								var body= memName+" invites you to join Study Group- "+groupName4View+"- for your class "+Class+"%0D%0A%0D%0A"+link;
-    						
-    								window.open('mailto:'+email+'?subject='+subject+'&body='+body);
-								
-								  },
-								  error: function(PrivateInvite, error) {
-								    // Execute any logic that should take place if the save fails.
-								    // error is a Parse.Error with an error code and message.
-								    alert('Failed to create new object, with error code: ' + error.message);
-								  }
-								});
-    
+        					sendInvite(memName)
         				});
-    				}
 
-    			
-    				
+        				document.getElementById('#emailPlaceholder').onkeydown = function(event) {
+        					var e = event || window.event;
+    						if (e.keyCode == 13) {
+    							sendInvite(memName);
+    						}
+    						else{
+    							console.log("not 13");
+    						}
+    					}
+    				}				
   				},
 
   				error: function(error) {
@@ -647,6 +621,115 @@ var studyGroup = Parse.Object.extend("studyGroup");
   					}
 			});
 
+//method to send an invite
+function sendInvite(memName){
+
+		//check if dartmouth email
+        var email= $('#emailPlaceholder').val();
+        var eSplit= email.split("@");
+
+        //nothing in email box
+        if(email==""){
+		alert("Please input classmate's email in textfield");
+		}
+
+		//not a dartmouth email
+		else if(eSplit[1]!="dartmouth.edu"){
+
+			alert("Please invite a Classmate with their valid Dartmouth Email");
+
+		}
+
+		//is  valid dartmouth email and text no blank
+		else{
+
+			//clear input field
+			$('#emailPlaceholder').val("");
+
+			//get current user
+			var inviteSender= Parse.User.current();
+
+			//query all users
+			var users = Parse.Object.extend("User");
+			var userQuery = new Parse.Query(users);
+
+			//create parse invite object
+			var userExists;
+			var PrivateInvite = Parse.Object.extend("PrivateInvite");
+			var invite = new PrivateInvite();
+
+			//set data for parse object
+			invite.set("Email", email);
+			invite.set("User", inviteSender);
+			invite.set("Redeemed", false);
+			invite.set("Group", groupId);
+
+			//find if email in input is already a user
+			userQuery.equalTo("username", email);
+			userQuery.find({
+
+					success: function(user) {
+
+					//if the user was found make inviteObject
+					if(user.length==1){
+
+						userExists= true;
+		    			invite.set("userExists", userExists);
+
+		    			//append data for invite to database
+		    			invite.save(null, {
+								success: function(PrivateInvite) {
+
+								},
+
+							error: function(PrivateInvite, error) {
+							// Execute any logic that should take place if the save fails.
+							// error is a Parse.Error with an error code and message.
+							    alert('Failed to create new object, with error code: ' + error.message);
+							}
+
+						});
+
+						alert("Invite sent to "+email);
+
+						}
+
+						//the user wasn't found send email invite
+						else{
+							
+						//get varibles for email and parse object
+	 					var Class= $('#ag_classname').val();
+	 					userExists= false;
+
+
+						invite.save(null, {
+								success: function(PrivateInvite) {
+
+							    //vars for email bosy+ subject		
+								var subject= "You've been Invited to Study!";
+								var body= memName+" invites you to join Study Group titled "+groupName4View+" for your class "+Class+".%0D%0A%0D%0A Sign up with your Dartmouth Email and go to www.BookUp.org to Join!";
+						
+								window.location.replace('mailto:'+email+'?subject='+subject+'&body='+body);
+							
+							  },
+
+							  error: function(PrivateInvite, error) {
+							    // Execute any logic that should take place if the save fails.
+							    // error is a Parse.Error with an error code and message.
+							    alert('Failed to create new object, with error code: ' + error.message);
+							  }
+
+						});
+						}
+					},
+
+					error: function(error) {
+					alert("Error: " + error.code + " " + error.message);
+
+					}
+			});
+	}
+}
 
  $('#ag_classname').val($('#'+groupId+' #classname').text());
  $('#ag_topicname').val(groupName4View);
@@ -936,7 +1019,9 @@ alert("error, couldn't find group");
 
 var lastChecked;
 var map;
-    var currentUser;
+var currentUser;
+
+
 
  /*Bind js function to 3 nav things in group view*/
  $('#detailsLi').bind("click", function() {
@@ -951,10 +1036,126 @@ var map;
                                     toggleGroupViewMembers()
                                 });
 
-    lastChecked = new Date();
+var user= Parse.User.current();
+var userEmail= user.get("username");
 
-    var classes = Parse.Object.extend("Class");
-    var classQuery = new Parse.Query(classes);
+
+//find user's pending invites
+var invites= new Parse.Object.extend("PrivateInvite");
+var invitesQuery = new Parse.Query(invites);
+invitesQuery.equalTo("Email", userEmail);
+
+invitesQuery.find({
+  success: function(invites) {
+
+  	//get studyGroup objects of all pending invites for that person
+  	var groupsWhoInvited = [];
+
+  	for(i=0; i<invites.length; i++){
+  		var string= invites[i].get("Group")
+  		groupsWhoInvited.push(string);
+  		
+  	}
+
+  	//var getGroupsInv= 
+  	//get all groups for the classes
+  	classes= new Parse.Object.extend("Class");
+	var classesQuery = new Parse.Query(classes);
+	classesQuery.equalTo("students", user);
+	classesQuery.find({
+        success: function(results) {
+        	
+        	//create array for group objects
+            var validGroups= [];
+
+            for (var i = 0; i < results.length; i++) {
+
+                	var getClassDetails = new RSVP.Promise(function(fulfill) {
+                    var classDetails = new Array();
+                    classDetails.push(results[i].get("title"));
+                    classDetails.push(results[i].get("department"));
+                    classDetails.push(results[i].relation("classGroups"));
+                    fulfill(classDetails);
+                	});
+
+                getClassDetails.then(function(classDetails) {
+                    var title = classDetails[0];
+                    var depId = classDetails[1];
+                    var groups = classDetails[2];
+                    var groupQuery = groups.query();
+
+                    groupQuery.notEqualTo("members", Parse.User.current());
+                    groupQuery.find({
+                        success: function(results) {
+
+                            //loop through two group arrays to find invited to groups
+                            for(i=0; i<results.length; i++){
+
+                            	//loop through both array to add valid invite groups
+                            	if($.inArray(results[i].id, groupsWhoInvited)> -1){
+                            		validGroups.push(results[i]);
+                            	}
+                            }
+                            
+                            // Messages for this group
+                            for (var j = 0; j < validGroups.length; j++) {
+                                var groupId = validGroups[j].id;
+                                var topicname = validGroups[j].get("groupName");
+                                var members = validGroups[j].get("numStudents");
+                                var maxSize = validGroups[j].get("groupSize");
+                                var isPrivate = validGroups[j].get("isPrivate");
+                                var openSlots = maxSize - members;
+
+								if(openSlots>0){
+                                	var slots = "";
+                                	for (var k = 0; k < members; k++) {
+                                    	slots = slots.concat("<div class='member-slot-full'></div>");
+                                	}	
+
+                                	for (var k = 0; k < openSlots; k++) {
+                                    	slots = slots.concat("<div class='member-slot-empty'></div>");
+                                	}
+
+                                	
+                                	$('#inviteGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + depId + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Details</a></div><div class='join' id='2" + groupId + "'><a href='#'>Join</a></div></td></tr>");
+                                	console.log("appended");
+                                	/*add event listener*/
+                                	document.getElementById("2" + groupId).addEventListener("click", function() {
+                                    	joinGroup(this.id)
+                                	});
+
+								}
+                        	}
+                        },
+
+        				error: function(error) {
+    						alert("Error: " + error.code + " " + error.message);
+  						}
+					});
+
+					//hide pending invites if none exist
+					if(validGroups.length==0){
+						$('#inviteGroups').hide();
+					}
+                    
+
+        		});
+
+        	}
+        }
+	});
+  },
+
+ error: function(error) {
+  	alert("Error: " + error.code + " " + error.message);
+  }
+
+});
+
+
+lastChecked = new Date();
+ var classes = Parse.Object.extend("Class");
+ var classQuery = new Parse.Query(classes);
 
  currentUser = Parse.User.current();
     classQuery.equalTo("students", Parse.User.current());
@@ -962,6 +1163,7 @@ var map;
     //classQuery.include("classGroups");
     classQuery.find({
         success: function(results) {
+
             for (var i = 0; i < results.length; i++) {
 
                 var getClassDetails = new RSVP.Promise(function(fulfill) {
@@ -986,14 +1188,8 @@ var map;
                     groupQuery.find({
                         success: function(results) {
                             if (results.length > 0) {
-$('#availGroups .no_record').remove();
+								$('#availGroups .no_record').remove();
                                
-/*
-                                var table = document.getElementById("availGroups");
-                                var rowCount = table.rows.length;
-
-                                table.deleteRow(1);
-*/
                             }
                             var isPrivate=false;
                             // Messages for this group
@@ -1005,48 +1201,39 @@ $('#availGroups .no_record').remove();
                                 var isPrivate = results[j].get("isPrivate");
                                 var openSlots = maxSize - members;
 
-if(openSlots>0){
-                                var slots = "";
-                                for (var k = 0; k < members; k++) {
-                                    slots = slots.concat("<div class='member-slot-full'></div>");
-                                }
-                                for (var k = 0; k < openSlots; k++) {
-                                    slots = slots.concat("<div class='member-slot-empty'></div>");
-                                }
+								if(openSlots>0){
+	                                var slots = "";
+	                                for (var k = 0; k < members; k++) {
+	                                    slots = slots.concat("<div class='member-slot-full'></div>");
+	                                }
+	                                for (var k = 0; k < openSlots; k++) {
+	                                    slots = slots.concat("<div class='member-slot-empty'></div>");
+	                                }
 
-                                /*only show avalible group if its a public one*/
-                                if(!isPrivate){
-                                	$('#availGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Details</a></div><div class='join' id='2" + groupId + "'><a href='#'>Join</a></div></td></tr>");
+	                                /*only show avalible group if its a public one*/
+	                                if(!isPrivate){
+	                                	$('#availGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Details</a></div><div class='join' id='2" + groupId + "'><a href='#'>Join</a></div></td></tr>");
 
-                                /*add event listener*/
-                                document.getElementById("2" + groupId).addEventListener("click", function() {
-                                    joinGroup(this.id)
-                                });
-                                }
-                               
-/*
-                                document.getElementById("1" + groupId).addEventListener("click", function() {
-                                    selectGroup(this.id)
-                                });
-*/
+	                                	/*add event listener*/
+	                                	document.getElementById("2" + groupId).addEventListener("click", function() {
+	                                    	joinGroup(this.id)
+	                                	});
+                                	}
 
-}
-                            }
+								}
+                        	}
                         }
                     });
+
                     var myGroupQuery = groups.query();
                     myGroupQuery.equalTo("members", Parse.User.current());
                     myGroupQuery.find({
                         success: function(results) {
                             if (results.length > 0) {
-/*
-                                var table = document.getElementById("myGroups");
-                                var rowCount = table.rows.length;
 
-                                table.deleteRow(1);
-*/
-$('#myGroups .no_record').remove();
+								$('#myGroups .no_record').remove();
                             }
+
                             // Messages for this group
                             var isPrivate = false;
                             for (var j = 0; j < results.length; j++) {

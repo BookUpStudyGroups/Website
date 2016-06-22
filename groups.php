@@ -129,7 +129,7 @@ require_once('header.php');
 </div>
 
 
-    	<div class="row">
+    	 <div class="row">
         <div class="col-md-6 col-sm-6">
         <div class="ms-group groups-css">
 
@@ -143,16 +143,27 @@ require_once('header.php');
                           <tr>
                             <td colspan="3" class="no_record">No Groups Found.</td>
                           </tr>
-
-                      
-
-                      
-
                       </tbody>
                   </table>
                 </div>
         </div>
 
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+        <div class="js-group groups-css">
+        <div class="responsive-table">
+                  <table width="100%" id="inviteGroups" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                      <tr>
+                        <td class="greenbg" colspan="3">Pending Invites</td>
+                      </tr>
+
+                   </tbody>
+                  </table>
+                </div>
+        </div>
+        </div>
         </div>
 
         <div class="col-md-6 col-sm-6">
