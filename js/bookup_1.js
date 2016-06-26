@@ -116,6 +116,11 @@ redirectUnAuthUser();
     loadGroupsPage();
 }
 
+    if($("#matchbody").length>0){
+redirectUnAuthUser();
+    loadNavbarBtn(3);
+    loadMatchPage();
+}
 
 
     

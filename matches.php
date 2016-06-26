@@ -2,7 +2,7 @@
 $body_id = 'matchbody';
 require_once('header.php'); 
 ?>
-<script src="js/parse-1.6.14.js"></script>
+<script src="js/matchView.js"></script>
     <div id="quote_section"><br><br>Stay Tuned! Groups and Study Buddies Will Be Fully Launched 06/24/16 @6:00PM</div>
 
 <div class="white_bg">
@@ -244,7 +244,7 @@ require_once('header.php');
 
     	<div class="row">
             <div class="col-md-6 col-sm-6">
-        <div class="js-group groups-css" id="availGroups">
+        <div class="js-group groups-css" id="myClasses">
         <div class="responsive-table">
                   <table width="100%"  cellspacing="0" cellpadding="0" border="0">
                     <tbody>
@@ -269,7 +269,7 @@ require_once('header.php');
         <div class="ms-group groups-css">
 
         <div class="responsive-table">
-                  <table width="100%" id="myGroups" cellspacing="0" cellpadding="0" border="0">
+                  <table width="100%" id="myMatches" cellspacing="0" cellpadding="0" border="0">
                     <tbody>
                       <tr>
                         <td class="greenbg" colspan="3">My Study Buddies</td>
