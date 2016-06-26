@@ -164,11 +164,23 @@ classQuery.get(classId,{
         var classSbRequests=[];
         console.log('finding match for class:');
     console.log(result.get("title"));
-        classSbRequests=result.get("allSbRequests");
+        classSbRequests=result.relation("StudyBuddies");
+        var sbRequestQuery=classSbRequests.query()
+        sbRequestQuery.find({
+        success:function(results){
+              console.log(results.length);
+},error:function(error){
+    alert("Error: " + error.code + " " + error.message);
+}
+}
+        });
+        /*
+        
         console.log(classSbRequests);
         //for(i=0;i<classSbRequests.length;i++){
         classDetails.push(classSbRequests[0]);
             fulfill(classDetails);
+            */
     //    }
         //alreadyRequested();
 },error: function(error) {
@@ -178,7 +190,9 @@ classQuery.get(classId,{
     });
     
     getClassDetails.then(function(classDetails){
-       var userId=classDetails[0];
+       var sbId=classDetails[0];
+            var sbId = Parse.Object.extend("Class");
+
     var userQuery = new Parse.Query(Parse.User);
      console.log('In promise, generating user query');
 console.log(String(userId));
