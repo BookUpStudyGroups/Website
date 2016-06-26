@@ -2,17 +2,15 @@
 $body_id = 'profilebody';
 
 ?>
-<script src="js/parse-1.6.14.js"></script>
-
 <?php require_once('header.php'); ?>
-
+<script src="js/profileView.js"></script>
 <div class="slider_section">
 <div class="logo-home">
 <a href=#>
 <!--<img src="images/logo.png" alt="BookUp" title="BookUp">-->
 </a>
     
-    <div id="quote_section">BOOKUP PILOT PROGRAM 16X @DARTMOUTH</div>
+    <div id="quote_section"></div>
     <div id="homeBuilding">
         <a href="search-group.php">
             <img src="images/polybuilding.png" alt="BookUp" title="BookUp"></a>
@@ -55,7 +53,7 @@ $body_id = 'profilebody';
               </div>
             </div> -->
     </div>
-<div id="slogan_section">Studying Made Simple.<br><a id="home-down" href="#picons"><i class="fa fa-chevron-down" id="home-down" aria-hidden="true"></i></a></div>
+<div id="slogan_section">Studying Made Simple.<br><i class="fa fa-chevron-down" id="home-down" aria-hidden="true"></i></div>
       
     <div id="picons" class="htop_four_icons">
       <div class="container">
@@ -123,61 +121,6 @@ $body_id = 'profilebody';
 </div>
   </div>
 </div>
-<script>
-window.onload=function(){
-var classes = Parse.Object.extend("Class");
-var classQuery = new Parse.Query(classes);
 
-
-classQuery.equalTo("students", Parse.User.current());
-// execute the query
-classQuery.find({
-  success: function(results){
-for (var i = 0; i < results.length; i++) {
-var prof=results[i].get("prof");
-var dep=results[i].get("department");
-var title=results[i].get("title");
-var per=results[i].get("period");
-var depId=results[i].get("depId");
-
-
-$("#class-row").append("<div class='col-md-12 col-sm-12'> <a href='groups.php'><div class='col-lg-12 col-md-12 col-sm-12'><img class='profile-classimg' src='images/class-"+depId+"-marker-select.png' alt='' ></div><div class='col-lg-12 col-md-12 col-sm-12'><b>&nbsp;"+title+"</b><br>"+prof+", "+per+"</div></a> </div>");
-//<div class="col-md-12 col-sm-12"> <a href="#"> </a> </div>
-}
-    // results contains all of the User objects, and their associated Weapon objects, too
-  }
-});
-
-/*
-
-var classes = Parse.Object.extend("Class");
-var classQuery = new Parse.Query(classes);
-classQuery.ascending("department","number");
-classQuery.find({
-    success: function(groups) {
-for (var i = 0; i < groups.length; i++) {
-                    var prof=groups[i].get("prof");
-                    var dep=groups[i].get("department");
-var id=groups[i].id;
-var num=groups[i].get("number");
-var per=groups[i].get("period");
-$(".form-control").append("<option value="+id+">"+dep+" "+num+" with Professor "+prof+"</option>");
-                   
-                }
-            
-    },
-    error: function(object, error) {
-        // The object was not retrieved successfully.
-        // error is a Parse.Error with an error code and message.
-        alert("Error: Courses could not be retrieved.");
-    }
-});
-*/
-document.getElementById("si_profile_heading").innerHTML=Parse.User.current().get("fullName");
-                
-};
-
-
-</script>
 <!--#startstudy-->
 <?php require_once('footer.php'); ?>

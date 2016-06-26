@@ -2,8 +2,12 @@
 $body_id = 'groupbody';
 require_once('header.php'); 
 ?>
-<script src="js/parse-1.6.14.js"></script>
+
+<script src='js/groupView.js'></script>
+    <div id="quote_section"><br><br>Stay Tuned! Groups and Study Buddies Will Be Fully Launched 06/24/16 @6:00PM</div>
+
 <div class="white_bg">
+
 	<div class="container" val="">
       
           <div class="row successmsg">
@@ -111,7 +115,7 @@ require_once('header.php');
 </div>
 
 <div class="members"> 
-    <p class = 'membersTextHeaders'> Group Members </p>
+    <p class = 'membersTextHeaders' id= 'membersHeader'> Group Members </p>
 
 <table style="width:100%" id= "membersDisplay">
   
@@ -158,7 +162,9 @@ require_once('header.php');
                       <tr>
                         <td class="greenbg" colspan="3">Pending Invites</td>
                       </tr>
-
+ <tr>
+                            <td colspan="3" class="no_record">No New Invites.</td>
+                          </tr>
                    </tbody>
                   </table>
                 </div>

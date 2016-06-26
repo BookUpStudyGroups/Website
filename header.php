@@ -17,20 +17,21 @@
 <link rel="stylesheet" href="css/scroll.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="js/parse-1.6.14.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-<!--
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
--->
-<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/jquery.ui.touch-punch.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgHVAllyhnnvIHX0xqO9nSSJrFOR9EF70"></script>
 <script src="//cdn.jsdelivr.net/rsvp/3.0.6/rsvp.js"></script>
-<script src="js/bookup_1.js"></script>
-<script src="js/jquery.validate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
+<script src="js/include/parse-1.6.14.js"></script>
+<script src="js/include/bootstrap.js"></script>
+<script src="js/include/jquery.ui.touch-punch.min.js"></script>
+<script src="js/include/jquery.validate.min.js"></script>
+    
+    <script src="js/bookup_1.js"></script>
+
+    
 </head>
 <body id="<?php echo $body_id; ?>">
 

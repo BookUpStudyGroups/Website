@@ -9,7 +9,7 @@ body { padding:0px; margin:0px;/* background:#e5f8ff;*/ background:#fff; color:#
 html,body { height:100%;}
 #quote_section{
     font-weight:600;
-    font-size:35px;
+    font-size:25px;
     text-align:center;
     color:#FFFFFF;
     background:rgb(108,200,232);
@@ -18,13 +18,105 @@ html,body { height:100%;}
     padding-bottom:20px;
     margin-bottom:40px;
 }
+.form-control{
+//color:#000000 !important;
+}
+.iconclasses{
+background:#ffffff;
+    border-radius:100%;
+}
+#user-classes ul li 
+#weekCalendar{
+}
+#weekBody{
+    width:100%;
+    min-height:200px;
+   background:#e5f8ff;
+     margin-bottom:60px;
+    margin-left:auto;
+    margin-right:auto;
+    
+}
+.weekRow{
+    float:none;
+    margin:auto;
+    display:table;
+}
+#weekTitle{
+    font-size:20px !important;
+    padding:8px 20px !important;
+}
+.daybox{
+    width:300px;
+    margin-top:30px;
+    margin-bottom:30px;
+    margin-left:20px;
+    margin-right:20px;
+    display:inline-block;
+    float:none;
+    text-align:center;
+    
+}
+/*
+.daybox:hover .dayboxName{
+    background:rgb(108,200,232);
+}
+*/
+.dayboxInput:hover{
+   border-bottom:3px solid rgb(108,200,232);
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotate(0deg); 
+    -moz-transform:rotateX(0deg) rotateY(0deg) rotate(0deg);
+    -o-transform:rotateX(0deg) rotateY(0deg) rotate(0deg);
+    transform: rotateX(0deg) rotateY(0deg) rotate(0deg);
+}
+.weekWrap{
+    width:100%;
+}
+.dayboxInput{
+    width:100%;
+    color:#3E61C3;
+    background:#FFFFFF;
+    padding-top:5px;
+    padding-bottom:5px;
+    font-size:14px;
+     z-index: -1;
+    border-bottom:3px solid #3E61C3;
+     -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;
+    -webkit-transform: rotateX(10deg) rotateY(3deg) rotate(-1deg); /* Safari */
+    -moz-transform:rotateX(10deg) rotateY(3deg) rotate(-1deg);
+    -o-transform:rotateX(10deg) rotateY(3deg) rotate(-1deg);
+    transform: rotateX(10deg) rotateY(3deg) rotate(-1deg);
+    transform-origin: 0% 0%;
+}
+.dayboxName{
+    padding-top:10px;
+    padding-bottom:10px;
+    border-radius: 5px 5px 0px 0px;
+    //margin-bottom:-2px;
+    font-size:20px;
+    color:#FFFFFF;
+    width:100%;
+    background:#3E61C3;
+     -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;
+}
+
+#className{
+    font-weight:900;
+}
 #slogan_section{
     font-weight:900;
     font-size:35px;
     text-align:center;
     width:100%;
     padding-top:20px;
-    padding-bottom:50px;
+    padding-bottom:10px;
+}
+#home-down{
+        -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;
+color:#000000;
+}
+#home-down:hover{
+    transform:scale(1.05);
 }
 #header-btns{
     //background-image:url(../images/polyblue.png);
@@ -370,7 +462,7 @@ margin-left:30px;
 .contactsec .contact-form, .contactadd { background:#e5f8ff; float:left; width:100%; padding:15px; border-radius:5px;}
 .contactadd { margin-top:56px; min-height:290px; background:#f3f3f3; }
 .contactsec h2 { color:#2b708b; font-size:24px; text-transform:uppercase; margin-bottom:30px;}
-.contactsec p { font-size:13px; color:#777; line-height:20px; padding:0px 0 25px;}
+.contactsec p { font-size:16px; color:#777; line-height:20px; padding:0px 0 25px;}
 .contactsec .address label { font-size:13px; font-weight:normal; color:#777; padding-right:15px;}
 .contactsec .address span { font-size:20px; color:#777; font-weight:600;}
 .contactsec .address span a { color:#777;}
@@ -537,18 +629,26 @@ background: #e5f8ff;
 */
 .resizable.open .reg-title {font-size: 14px; padding:11px 14px;}
 .resizable.open .login_box .form-group input { border:none; border-radius:0; background:#fff; min-height:30px; color:#777; font-size:12px; box-shadow: 0 0px 0px rgba(0, 0, 0, 0) inset;}
-.resizable.open .login_box .submit button { border:none; width:100%; border-radius:50px; min-height:50px; background:#3E61C3; font-weight:bold; font-size:14px; color:#fff; margin-bottom:10px;}
+.resizable.open .login_box .submit button { border:none; width:100%; border-radius:50px; min-height:50px; background:#3E61C3; font-weight:bold; font-size:18px; color:#fff; margin-bottom:10px;}
 .submit button:hover{background:#6CC8E8 !important;}
 .resizable.open .login_box .forgot_password a { font-size:12px; color:#4b89ad;}
 .resizable.open .login_box .create_account button { border:none; width:100%; border-radius:0; min-height:50px; background:#777; font-weight:bold; font-size:20px; color:#fff; }
 .resizable.open .registration label { font-size:12px; color:#4b89ad; font-weight:normal; text-align:left; display:block;}
 .resizable.open #ag_class{ font-size:12px;}
 
+.legend-class-img{
+    background:#FFFFFF;
+    border-radius:100%;
+}
+
+.legend-class-img:hover{
+    background:rgb(108, 200, 232);
+}
 .start_studying.bottom-btn a { position:relative; display:inline-block; padding:16px 50px 16px 30px; color:#fff; font-size:26px; font-weight:600; border-radius:5px; background:#5aa1bd; border-bottom:3px solid #4b89ad; text-transform:uppercase;}
 .start_studying.bottom-btn a:after { background:url(../images/white-arrow.png) no-repeat left top; content:""; position:absolute; width:14px; height:16px; margin-top:16px; margin-left:10px; right:19px; top:11px;}
 .start_studying.bottom-btn a:hover { background:#4b89ad; text-decoration:none;}
 #wrap { min-height:100%;}
-#forgotbody, #loginbody, #registerbody, #profilebody { background:#fff;}
+#forgotbody,#contactbody, #editprofilebody,#loginbody, #registerbody, #profilebody { background:url('../images/polybackground.png');}
 #forgotbody #wrap, #loginbody #wrap, #registerbody #wrap { padding-bottom:57px;}
 #profilebody .copyrite{	margin-top: -20px;	}
 #available-groups-table{display: none;	margin: 100px auto;}
@@ -561,7 +661,7 @@ background: #e5f8ff;
 #user-classes{	position: absolute;	right: 10px;	top: 70px;	}
 #user-classes ul{list-style: none;}
 #user-classes li{border-radius: 4px;color: #fff;margin-bottom: 5px;	padding: 6px 12px;	}
-#user-classes li span{color:#fff !important;}
+#user-classes li span{color:#fff !important; font-size:16px;}
 #user-classes li span{display: inline-block;min-width: 128px;}
 #user-classes li:nth-child(4n+1){ background-color: rgba(0,0,0,0.5); }
 #user-classes li:nth-child(4n+2){ background-color: rgba(0,0,0,0.5); }
@@ -655,15 +755,15 @@ top: 200px;
 
 #create-group
 {
-
+min-width:140px;
 background: #3E61C3 none repeat scroll 0 0;
 border-radius: 50px;
 color: #FFF;
-padding: 7px 8px;
+padding: 10px 10px;
    right: 10px;
 position: absolute;
 display:inline-block;	
-font: 26px!important;
+font-size: 18px!important;
 }
 #create-group:hover
 {

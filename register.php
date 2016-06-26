@@ -3,7 +3,7 @@ $body_id = 'registerbody';
 
 ?>
 <?php require_once('header.php'); ?>
-
+<script src="js/regView.js"></script>
 <div class="white_bg padding-page">
     <div class="container">
       <div class="col-xs-12 col-md-6 col-sm-7 col-centered">
@@ -91,128 +91,5 @@ $body_id = 'registerbody';
       </div>
     </div>
   </div>
-<script>
-window.onload=function(){
 
-
-//Load in available classes to dropdown menus
-var classes = Parse.Object.extend("Class");
-var classQuery = new Parse.Query(classes);
-classQuery.ascending("department","number");
-classQuery.find({
-    success: function(groups) {
-for (var i = 0; i < groups.length; i++) {
-                    var prof=groups[i].get("prof");
-                    var dep=groups[i].get("department");
-var title=groups[i].get("title");
-var id=groups[i].id;
-var num=groups[i].get("number");
-var per=groups[i].get("period");
-$(".form-control").append("<option value="+id+">"+"["+dep+num+"] "+title+" with Professor "+prof+"</option>");
-                   
-                }
-            
-    },
-    error: function(object, error) {
-        // The object was not retrieved successfully.
-        // error is a Parse.Error with an error code and message.
-        alert("Error: Courses could not be retrieved.");
-    }
-});
-
-
-
-};
-function checkRegForm() {
-
-    var returnValue = valideRegistrationform();
-    if (returnValue == false) {
-        return returnValue;
-    } else {
-        //form is validated
-        var user = new Parse.User();
-        var fullName = $.trim($("#fname").val()) + " " + $.trim($("#lname").val());
-        var username = $.trim($("#email").val());
-        var password = $.trim($("#password").val());
-        // other fields can be set just like with Parse.Object
-
-        //Check to see if username is already taken
-        var query = new Parse.Query(Parse.User);
-        query.equalTo("username", username);
-        query.find({
-
-            //If username can be found, then don't allow creation
-
-            success: function(existing_user) {
-                if (existing_user.length >= 1) {
-                    alert("Your email is already associated with a BookUp account.");
-                    $("#email").focus();
-                    return false;
-                } else {
-
-                    //Username isn't taken, so sign up!
-var user = new Parse.User();
-user.set("fullName",fullName);
-user.set("username",username);
-user.set("password",password);
-                    user.signUp(null, {
-                        success: function(user) {
-                            //now sign up for the different classes
-                            
-
-                            	$(".classesrow select").each(function(index){
-                            		if( $(this).val() && $(this).val() != '' )
-                            		{
-                            			
-                            var courseId=$(this).val();
-                            	var classObj = Parse.Object.extend("Class");
-                            	var classQuery = new Parse.Query(classObj);
-                            	classQuery.get(courseId, {
-                                		success: function(result) {
-                                    	// The object was retrieved successfully.
-                                    	var relation = result.relation("students");
-                            		relation.add(user);
-                            		result.save();
-                            		},
-                            error: function(user, error) {
-                                // Show the error message somewhere and let the user try again.
-                                alert("Error: " + error.code + " " + error.message);
-                              }
-                            });
-
-                            		}
-                            	});//each
-alert("Your BookUp account was registered successfully.");
-window.location = "login.php";
-                            return true;
-
-                            
-
-                        },
-                        error: function(user, error) {
-                            alert("Error: There was a problem with your registration.");
-
-
-                            return false;
-
-
-                        }
-                    });
-
-
-
-                }
-            },
-            error: function(existing_user) {
-
-                alert("Error: Userbase could not be queried");
-                return false;
-
-            }
-        });
-
-    }
-return false;
-}
-</script>
 <?php require_once('footer.php'); ?>

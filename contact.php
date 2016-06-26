@@ -6,7 +6,7 @@ if( isset( $_POST['submit'] ) )
 	$name = $_POST['name'];
 	$email = $_POST['email'];
 	$messageCon = $_POST['message'];
-	$to = "bhkim7000@gmail.com"; #Dartmouth@bookup.org
+	$to = "all@bookup.org";
 	$subject = 'Contact Info';       
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -103,12 +103,12 @@ if( isset( $_POST['submit'] ) )
 				</div>
                 <div class="col-md-6 col-sm-6">
                 <div class="contactadd">
-          <p>This product is made for Dartmouth students by Dartmouth students and we'd love your feedback. Are there any features you think would be helpful for studying, accessing campus resources, or filtering study buddies? Imagine any feature you want, even if you don't think it's possible.</p>
+          <p>This product is made for Dartmouth students by Dartmouth students, and we'd love your feedback. Are there any features you think would be helpful for studying, accessing campus resources, or filtering study buddies? <br>Imagine any feature you want, even if you don't think it's possible.</p>
           <div class="address">
 
             <div class="col-group">
               <label>e-mail:</label>
-              <span><a href="mailto:Dartmouth@BookUp.org">dartmouth@bookup.org</a></span> </div>
+              <span><a href="mailto:all@bookup.org">team@bookup.org</a></span> </div>
           </div>
           </div>
         </div>

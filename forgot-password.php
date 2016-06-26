@@ -2,18 +2,17 @@
 $body_id = 'forgotbody';
 
 ?>
+<script src='js/forgotPasswordView.js'></script>
 <?php require_once('header.php'); ?>
   <div class="white_bg padding-page">
     <div class="container">
     <div class="col-xs-12 col-md-5 col-sm-7 col-centered">
     	
          
-            <p class="error_msg"></p>
-       
     
         <div class="login_box">
           <div class="title">Enter your email</div>
-          <form method="post" action="" id="forgotpasswordform" onsubmit="return validateForgotPassword();">
+          <form method="post" action="" id="forgotpasswordform" onsubmit="return submitPasswordRequest();">
             <div class="form-group">
               <input type="email" class="form-control" placeholder="Enter your email" id="fp_email" name="fp_email">
             </div>

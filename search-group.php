@@ -4,15 +4,10 @@ $body_id = 'search_group_body';
 
 
 ?>
-<link rel=stylesheet" href="css/uikit.min.css"/>
-<script src="js/jquery.min.js"></script>
-<script src="js/uikit.min.js"></script>
-        <!-- notify CSS -->
-        <link rel="stylesheet" href="css/components/notify.css">
-        <!-- notify Javascript -->
-        <script src="js/components/notify.js"></script>
-<?php require_once('header.php'); ?>
+<script src="js/include/jquery.min.js"></script>
 
+<?php require_once('header.php'); ?>
+<script src="js/mapView.js"></script>
 
 <div id="map-container">
 	<div id="map"></div><!--#map-->

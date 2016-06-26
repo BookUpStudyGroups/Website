@@ -1,7 +1,6 @@
 <?php 
-require_once('admin/includes/configurations.php');
+
 $body_id = 'termsandcondition';
-require_once('logincheck.php');
 require_once('header.php'); ?>
 <div class="white_bg">
 	<div class="container">

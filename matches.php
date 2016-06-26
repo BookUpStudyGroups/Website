@@ -3,6 +3,8 @@ $body_id = 'matchbody';
 require_once('header.php'); 
 ?>
 <script src="js/parse-1.6.14.js"></script>
+    <div id="quote_section"><br><br>Stay Tuned! Groups and Study Buddies Will Be Fully Launched 06/24/16 @6:00PM</div>
+
 <div class="white_bg">
 	<div class="container" val="">
       
@@ -20,7 +22,7 @@ require_once('header.php');
 </table>  
      <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12" id="weekCalendar" title="">
          <div class="weekWrap">
-         <div class="reg-title" id= "weekTitle">MATCH WEEKLY SCHEDULE</div>
+         <div class="reg-title" id= "weekTitle">My Available Study Times</div>
          <div id="weekBody">
              <div class="weekRow">
                 <div class="daybox">
