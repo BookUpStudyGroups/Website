@@ -761,11 +761,10 @@ invitesQuery.find({
 
         //create rsvp promise to get all grops the user was invited too
         var getInvites = new RSVP.Promise(function(fulfill) {
-            console.log("in promise");
             
             //add each invite to array
             for(i=0; i<invites.length; i++){
-                var invite= invites[i].get("group");
+                var invite= invites[i].get("group").id;
                 groupsWhoInvited.push(invite);
             }
             fulfill(groupsWhoInvited);
@@ -774,77 +773,105 @@ invitesQuery.find({
         //return all groups in user's classes
         getInvites.then(function(groupsWhoInvited){
 
+            //boolean for diabling non invites dialogoue
+            var areInvites= false;
+
             classesQuery = new Parse.Query(classes);
             classesQuery.equalTo("students", user);
-
             classesQuery.find({
                 success: function(results) {
 
-                for (var i = 0; i < results.length; i++) {
+                    for (var i = 0; i < results.length; i++) {
 
-                    var getClassGroups = new RSVP.Promise(function(fulfill) {
-                        var classDetails = new Array();
-                        classDetails.push(results[i].get("prof"));
-                        classDetails.push(results[i].get("department"));
-                        classDetails.push(results[i].get("title"));
-                        classDetails.push(results[i].get("period"));
-                        classDetails.push(results[i].get("depId"));
-                        classDetails.push(results[i].relation("classGroups"));
-                        fulfill(classDetails);
-                    });
+                        var getClassDetails = new RSVP.Promise(function(fulfill) {
 
-                    getClassDetails.then(function(classDetails) {
-                    var prof = classDetails[0];
-                    var dep = classDetails[1];
-                    var title = classDetails[2];
-                    var per = classDetails[3];
-                    var depId = classDetails[4];
-                    var groups = classDetails[5];
-                    });
-                }
-                
+                            var validGroups= new Array();
+                            var classDetails = new Array();
+                            classDetails.push(results[i].get("prof"));
+                            classDetails.push(results[i].get("department"));
+                            classDetails.push(results[i].get("title"));
+                            classDetails.push(results[i].get("period"));
+                            classDetails.push(results[i].get("depId"));
+                            var gQuery= results[i].relation("classGroups");
 
-                //create array for group objects
-                var workingInvites = new Array();
+                            //query the groups for a class
+                            var classGroupsQuery= gQuery.query()
+                            classGroupsQuery.find({
+                                success: function(classGroupss) {
+                                    
+                                    for(v=0; v<classGroupss.length; v++){
 
-                for (var i = 0; i < results.length; i++) {
+                                        //if the group was one that wasn't invited remove from array
+                                        if(groupsWhoInvited.indexOf(classGroupss[v].id)!=-1){
+                                            
+                                            //push classes that were invite only
+                                            validGroups.push(classGroupss[v]);
+                                            areInvites= true;
+                                            
+                                          }
+                                    }
 
-                    //got all groups for that user's classes and filter invites
-                    var possibleGroups= results[i].get("classGroups");
+                                    classDetails.push(validGroups);
+                                    
+                                    fulfill(classDetails);
+                                },
+                                error: function(error) {
+                                    alert("Error: " + error.code + " " + error.message);
+
+                                }
+                            });
+                        });
+
+                        getClassDetails.then(function(classDetails) {
+
+                            console.log(classDetails[5].length);
+                            var prof = classDetails[0];
+                            var dep = classDetails[1];
+                            var title = classDetails[2];
+                            var per = classDetails[3];
+                            var depId = classDetails[4];
+
+                            for (j = 0; j < classDetails[5].length; j++) {
+                                var groupId = classDetails[5][j].id;
+                                var topicname = classDetails[5][j].get("groupName");
+                                var members = classDetails[5][j].get("numStudents");
+                                var maxSize = classDetails[5][j].get("groupSize");
+                                var isPrivate = classDetails[5][j].get("isPrivate");
+                                var openSlots = maxSize - members;
+                                console.log("wanted data______");
+                                console.log(maxSize);
+                                console.log(classDetails[5][j].get("numStudents"));
+                                console.log("wanted data______");
+                                
+
+                                if(openSlots>0){
+                                    var slots = "";
+                                    for (var k = 0; k < members; k++) {
+                                        slots = slots.concat("<div class='member-slot-full'></div>");
+                                    }
+                                    for (var k = 0; k < openSlots; k++) {
+                                        slots = slots.concat("<div class='member-slot-empty'></div>");
+                                    }
 
 
-                    console.log(possibleGroups.length);
-                    for(z=0; z<possibleGroups; z++){
-                        workingInvites.push(possibleGroups[i]);
-                        console.log("group added");
+                                        $('#inviteGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Accept</a></div><div class='join' id='2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
+
+                                        /*add event listener*/
+                                        document.getElementById("2" + groupId).addEventListener("click", function() {
+                                            joinGroup(this.id)
+                                        });
+                                    
+
+                                }
+                            }
+                        }).then(function(console.log(areInvites);
                     }
 
-                    // classDetails.push(results[i].get("title"));
-                    // classDetails.push(results[i].get("department"));
-                    // classDetails.push(results[i].relation("classGroups"));
-
-                    //loop through a grouos in class and check if it matches with an invite
-                    // for(b=0; b < possibleGroups.length; b++){
-
-                    //     var isValid= groupsWhoInvited.indexOf(possibleGroups)> -1;
-                    //     console.log(isValid);
-                    //     //console.log(possibleGroups);
-                    //     console.log(groupsWhoInvited[0]);
-
-
-                    //     if(isValid){
-                    //         //validGroups.push(possibleGroups[b]);
-                    //     }
-
-                    //}
-                    
-                    
-                }     
-
-                    // var title = classDetails[0];
-                    // var depId = classDetails[1];
-                    // var groups = classDetails[2];
-                    //console.log(validGroups.length);
+                    //remove the no invite thing if there are invites
+                    console.log(areInvites);
+                    if (areInvites) {
+                        $('#inviteGroups .no_record').remove();
+                    }
                 },
 
                 error: function(error) {
@@ -853,42 +880,8 @@ invitesQuery.find({
                 }
                     
             });
-
-
-        // });.then(function(groupsWhoInvited){
-        //     console.log("promise worked");
-        //     //get all groups for the users classes
-        //     var classes= new Parse.Object.extend("Class");
-        //     var studyGroup= Parse.Object.extend("studyGroup");
-                    
-
-        //     var classesQuery = new Parse.Query(classes);
-        //     classesQuery.equalTo("studyGroup", studyGroup);
-        //     classesQuery.find({
-        //         success: function(groupsClasses) {
-
-        //             var validGroupInvites= groupClasses;
-
-        //             // //remove group from invite array if wasn't invited to
-        //             for(w=0; w<groupsWhoInvited.length; w++){
-        //                 //get index of group obj in classezGroup array *** -1 if doesn't exists******
-        //                 var index1= groupsClasses.indexOf(groupsWhoInvited[w]);
-
-        //                 //if doesn't exist remove group from array
-        //                 if(index1== -1){
-
-        //                     validGroupInvites.remove(index1);
-                            
-        //                 }
-                        
-        //             }
-        //         },
-
-        //     });
-
-            
-
         });
+    
     },
 
     error: function(error) {
