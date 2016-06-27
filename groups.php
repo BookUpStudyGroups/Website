@@ -4,7 +4,7 @@ require_once('header.php');
 ?>
 
 <script src='js/groupView.js'></script>
-    <div id="quote_section"><br><br>Stay Tuned! Groups and Study Buddies Will Be Fully Launched 06/24/16 @6:00PM</div>
+    <div id="quote_section"><br><br>Stay Tuned! Groups and Study Buddies Will Be Fully Launched 06/26/16 @6:00PM</div>
 
 <div class="white_bg">
 

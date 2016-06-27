@@ -72,6 +72,7 @@ classQuery.find({
                 classDetails.push(results[i].relation("classGroups"));
                  classDetails.push(results[i].id);
                  classDetails.push(results[i].get("number"));
+                currMatchState('bynMGQkeKm','67TsDS2Lse');
                                             $('#myGroups .no_record').remove();
 var prof = classDetails[0];
                 var dep = classDetails[1];
@@ -149,6 +150,82 @@ var prof = classDetails[0];
 
    
 }
+
+function currMatchState(userId,sbClass){
+    var userQuery = new Parse.Query(Parse.User);
+    var userDetails=[];
+    var classDetails=[];
+    var getUserDetails=new RSVP.Promise(function(fulfill) {
+    userQuery.get(userId,{
+        success:function(result){
+            
+            userDetails.push(result);
+          
+            alert(fulfill(userDetails));
+            
+        },error:function(error){
+                alert("Error: " + error.code + " " + error.message);
+
+        }
+    });
+    });
+    
+    
+    getUserDetails.then(function(userDetails){
+         var classQuery = new Parse.Query(Parse.Object.extend("Class"));
+  classQuery.get(sbClass,{
+      success:function(result){
+          
+          return sentRequest(userDetails[0],result);
+          
+      },error:function(error){
+                alert("Error: " + error.code + " " + error.message);
+
+        }
+  });
+    });
+
+    
+    
+    /*
+ var sbRequest = Parse.Object.extend("SBRequest");
+var sbRequestQuery = new Parse.Query(sbRequest);
+    sbRequest.equalTo('user',  {__type: "Pointer",
+        className: "_User",
+        objectId: userID});
+    sbRequest.equalTo('class',{__type: "Pointer",
+        className: "Class",
+        objectId: sbClass});
+    sbRequestQuery.find({
+        success:function(result){
+            alert('request is here');
+        },error:function(error){
+                        alert('No request is here');
+
+        }
+});
+    */
+}
+    function sentRequest(userObj,classObj){
+        var sbRequest = Parse.Object.extend("SBRequest");
+var sbRequestQuery = new Parse.Query(sbRequest);
+         alert(userObj.get("fullName"));
+         alert(classObj.get("title"));
+    sbRequest.equalTo('user',userObj);
+    sbRequest.equalTo('class',classObj);
+    sbRequestQuery.find({
+        success:function(result){
+            alert('request is here');
+            return true;
+        },error:function(error){
+                        alert('No request is here');
+            return false;
+
+        }
+    
+    });
+        
+    }
 function findMatch(idTag){
     var classId = idTag.slice(1);
     var classes = Parse.Object.extend("Class");
@@ -172,8 +249,8 @@ classQuery.get(classId,{
 },error:function(error){
     alert("Error: " + error.code + " " + error.message);
 }
-}
-        });
+});
+   
         /*
         
         console.log(classSbRequests);
@@ -188,6 +265,9 @@ classQuery.get(classId,{
   						}
 });
     });
+}
+                                           
+        /*
     
     getClassDetails.then(function(classDetails){
        var sbId=classDetails[0];
@@ -213,7 +293,7 @@ userQuery.get(String(userId),{
 });
     });
 }
-
+*/
 function getMatchAvailability(userId){
     //var sbRequestUser=new Parse.User();
     
