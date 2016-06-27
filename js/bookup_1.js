@@ -281,11 +281,11 @@ invitesQuery.find({
                                     }
 
                                     if(isPrivate){
-                                        $('#inviteGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "- <img src= 'images/lock.png' width='15px' alt=''> Private<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Accept</a></div><div class='join' id='2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
+                                        $('#inviteGroups tbody').append("<tr id='"+groupId+"'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + " - <img src= 'images/lock.png' width='15px' alt=''> Private<br><i><span id='classname'>" + title + "</span></i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='i1" + groupId + "'><a href='#'><span>Accept</span></a></div><div class='join' id='i2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
 
                                     }
                                     else{
-                                        $('#inviteGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Accept</a></div><div class='join' id='2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
+                                        $('#inviteGroups tbody').append("<tr id='" +groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Accept</a></div><div class='join' id='i2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
                                     }
 
                                     //loop through all invites
@@ -295,24 +295,27 @@ invitesQuery.find({
                                         //if the correct invite for the group was found
                                         if(groupId==invites[n].get("group").id){
 
-                                            console.log("about to add click listenr");
+                                            console.log("attacting data to div");
+
+                                            jQuery.data("#i1"+groupId, "inviteIdVal", invites[n].id);
                                             /*add event listener FOR INVITE BUTTON*/
                                             document.getElementById("1" + groupId).addEventListener("click", function() {
 
+                                                console.log("lsten clicked");
                                                 //destroy invite and join group
-                                                console.log(invites[n].id);
+                                                console.log(jQuery.data("#1GroupId","inviteIdVal"));
                                                 console.log("group joining");
                                                 deleteInvite(invites[n]);
-                                                joinGroup(this.id);
+                                                //joinGroup(this.id);
                                             });
 
+                                            jQuery.data("#i2"+groupId, "inviteIdVal", invites[n].id);
                                             /*add event listener*/
                                             document.getElementById("2" + groupId).addEventListener("click", function() {
 
                                                 //destroy invite
-                                                console.log(invites[n]);
                                                 console.log("group joining");
-                                                deleteInvite(invites[n]);
+                                                //deleteInvite(invites[n]);
                                                 location.reload();
                                             });
 
