@@ -271,6 +271,7 @@ invitesQuery.find({
                                 
 
                                 if(openSlots>0){
+
                                     var slots = "";
                                     for (var k = 0; k < members; k++) {
                                         slots = slots.concat("<div class='member-slot-full'></div>");
@@ -287,41 +288,51 @@ invitesQuery.find({
                                         $('#inviteGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Accept</a></div><div class='join' id='2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
                                     }
 
-                                        /*add event listener*/
-                                        document.getElementById("1" + groupId).addEventListener("click", function() {
-                                            console.log(classDetails[5][j]);
-                                            
-                                            //destroy invite
-                                            classDetails[5][j].destroy({
-                                                success: function(myObject) {
-                                                    joinGroup(this.id)
-                                                },
+                                    //loop through all invites
+                                    for(n=0; n<invites.length; n++){
+                                        console.log(invite[n]);
+                                        //if the correct invite for the group was found
+                                        if(groupId==invites[n].get("group").id){
 
-                                                 error: function(myObject, error) {
-                                                }
-                                            });
+                                            console.log("about to add click listenr");
+                                            /*add event listener FOR INVITE BUTTON*/
+                                            document.getElementById("1" + groupId).addEventListener("click", function() {
 
+                                                //destroy invite and join group
+                                                console.log(invites[n]);
+                                                invites[n].destroy({
+                                                    success: function(myObject) {
+                                                        console.log("group joining");
 
-                                        });
+                                                        joinGroup(this.id)
+            
+                                                    },
 
-                                         /*add event listener*/
-                                        document.getElementById("2" + groupId).addEventListener("click", function() {
-                                            //rejectInvite(this.id)
+                                                    error: function(myObject, error) {
+                                                    }
+                                                });
 
-                                            //destroy invite
-                                            console.log(classDetails[5][j]);
-                                            location.reload();
-                                            classDetails[5][j].destroy({
-                                                success: function(myObject) {
+                                            })
+
+                                            /*add event listener*/
+                                            document.getElementById("2" + groupId).addEventListener("click", function() {
+
+                                                //destroy invite
+                                                console.log(invites[n]);
+                                                invites[n].destroy({
+                                                    success: function(myObject) {
+                                                        console.log("droup declining");
+                                                        location.reload();
+                                                    },
                                                     
-                                                },
-                                                
-                                                 error: function(myObject, error) {
-                                                }
+                                                     error: function(myObject, error) {
+                                                    }
+                                                });
                                             });
-                                        });
-                                    
 
+                                        }
+                                    }
+                                    console.log("listners added")               
                                 }
                             }
                         }).then(function(){
