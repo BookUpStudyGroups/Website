@@ -289,8 +289,9 @@ invitesQuery.find({
                                     }
 
                                     //loop through all invites
+                                    console.log(invites.length);
                                     for(n=0; n<invites.length; n++){
-                                        console.log(invite[n]);
+                                        console.log("iterating");
                                         //if the correct invite for the group was found
                                         if(groupId==invites[n].get("group").id){
 
@@ -299,35 +300,20 @@ invitesQuery.find({
                                             document.getElementById("1" + groupId).addEventListener("click", function() {
 
                                                 //destroy invite and join group
-                                                console.log(invites[n]);
-                                                invites[n].destroy({
-                                                    success: function(myObject) {
-                                                        console.log("group joining");
-
-                                                        joinGroup(this.id)
-            
-                                                    },
-
-                                                    error: function(myObject, error) {
-                                                    }
-                                                });
-
-                                            })
+                                                console.log(invites[n].id);
+                                                console.log("group joining");
+                                                deleteInvite(invites[n]);
+                                                joinGroup(this.id);
+                                            });
 
                                             /*add event listener*/
                                             document.getElementById("2" + groupId).addEventListener("click", function() {
 
                                                 //destroy invite
                                                 console.log(invites[n]);
-                                                invites[n].destroy({
-                                                    success: function(myObject) {
-                                                        console.log("droup declining");
-                                                        location.reload();
-                                                    },
-                                                    
-                                                     error: function(myObject, error) {
-                                                    }
-                                                });
+                                                console.log("group joining");
+                                                deleteInvite(invites[n]);
+                                                location.reload();
                                             });
 
                                         }
@@ -1245,4 +1231,15 @@ function deleteOverlays() {
         }
     	markersArray.length = 0;
     }
+}
+
+function deleteInvite(invite){
+    invite.destroy({
+        success: function(myObject) {
+
+        },
+
+        error: function(myObject, error) {
+        }
+    });
 }
