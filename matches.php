@@ -3,7 +3,7 @@ $body_id = 'matchbody';
 require_once('header.php'); 
 ?>
 <script src="js/matchView.js"></script>
-    <div id="quote_section"><br><br>Stay Tuned! Groups and Study Buddies Will Be Fully Launched 06/26/16 @6:00PM</div>
+   <!-- <div id="quote_section"><br><br>Stay Tuned! Groups and Study Buddies Will Be Fully Launched 06/26/16 @6:00PM</div>-->
 
 <div class="white_bg">
 	<div class="container" val="">
@@ -17,7 +17,7 @@ require_once('header.php');
           <div class="row errormsg">
               
           </div> 
-        <table id="user-id-table" style="display:none;">
+        <table id="sb-table" style="display:none;">
                          <tbody></tbody>
 </table>  
      <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12" id="weekCalendar" title="">
@@ -172,7 +172,7 @@ require_once('header.php');
  <input type="text" readonly="readonly" class="form-control" placeholder="Select Class" name="ag_topicname" id="ag_classname" value="">
             </div>
             <div class="form-group">
-              <label for="ag_topicname">Topic Name</label>
+              <label for="ag_topicname">Section</label>
               <input type="text" readonly="readonly" class="form-control" placeholder="Enter Topic Name" name="ag_topicname" id="ag_topicname" value="<">
             </div>
 
@@ -182,7 +182,7 @@ require_once('header.php');
             <div class="form-group">
             <div id="time-range">
             	
-                <label>Available Times <span class="slider-time">
+                <label>Shared Availability <span class="slider-time">
 <input type="text" readonly="readonly" class="form-control" name="ag_time" id="ag_time" value="">
 
            
