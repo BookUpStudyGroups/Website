@@ -232,7 +232,6 @@ invitesQuery.find({
                                             
                                             //push classes that were invite only
                                             validGroups.push(classGroupss[v]);
-                                            areInvites= true;
                                             
                                           }
                                     }
@@ -264,13 +263,13 @@ invitesQuery.find({
                                 var maxSize = classDetails[5][j].get("groupSize");
                                 var isPrivate = classDetails[5][j].get("isPrivate");
                                 var openSlots = maxSize - members;
-                                console.log("wanted data______");
                                 console.log(maxSize);
                                 console.log(classDetails[5][j].get("numStudents"));
-                                console.log("wanted data______");
                                 
 
                                 if(openSlots>0){
+                                    areInvites=true;
+                                    checkAreInvites(areInvites);
 
                                     var slots = "";
                                     for (var k = 0; k < members; k++) {
@@ -285,37 +284,38 @@ invitesQuery.find({
 
                                     }
                                     else{
-                                        $('#inviteGroups tbody').append("<tr id='" +groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='1" + groupId + "'><a href='#'>Accept</a></div><div class='join' id='i2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
+                                        $('#inviteGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='i1" + groupId + "'><a href='#'>Accept</a></div><div class='join' id='i2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
                                     }
 
                                     //loop through all invites
-                                    console.log(invites.length);
                                     for(n=0; n<invites.length; n++){
                                         console.log("iterating");
                                         //if the correct invite for the group was found
                                         if(groupId==invites[n].get("group").id){
+                                            
 
                                             console.log("attacting data to div");
+                                            console.log(invites[n].id);
 
-                                            jQuery.data("#i1"+groupId, "inviteIdVal", invites[n].id);
                                             /*add event listener FOR INVITE BUTTON*/
-                                            document.getElementById("1" + groupId).addEventListener("click", function() {
+                                            document.getElementById("i1" + groupId).addEventListener("click", function() {
 
-                                                console.log("lsten clicked");
                                                 //destroy invite and join group
-                                                console.log(jQuery.data("#1GroupId","inviteIdVal"));
+                                                //console.log(jQuery.data("#1GroupId","inviteIdVal"));
                                                 console.log("group joining");
-                                                deleteInvite(invites[n]);
-                                                //joinGroup(this.id);
+                                                console.log(this.id);
+                                                deleteInvite(invi, userEmail);
+                                                joinGroup(this.id);
                                             });
 
-                                            jQuery.data("#i2"+groupId, "inviteIdVal", invites[n].id);
+                                            //jQuery.data("#i2"+groupId, "inviteIdVal", invites[n].id);
                                             /*add event listener*/
-                                            document.getElementById("2" + groupId).addEventListener("click", function() {
+                                            document.getElementById("i2" + groupId).addEventListener("click", function() {
 
                                                 //destroy invite
-                                                console.log("group joining");
-                                                //deleteInvite(invites[n]);
+                                                console.log(n);
+                                                console.log("invite declined");
+                                                deleteInvite(n, userEmail);
                                                 location.reload();
                                             });
 
@@ -323,12 +323,6 @@ invitesQuery.find({
                                     }
                                     console.log("listners added")               
                                 }
-                            }
-                        }).then(function(){
-                            //remove the no invite thing if there are invites
-                            console.log(areInvites);
-                            if (areInvites) {
-                                $('#inviteGroups .no_record').remove();
                             }
                         });
                     }
@@ -1236,13 +1230,41 @@ function deleteOverlays() {
     }
 }
 
-function deleteInvite(invite){
-    invite.destroy({
-        success: function(myObject) {
+function deleteInvite(inviteArrayIndex, userEmail){
+
+    var invitess= new Parse.Object.extend("PrivateInvite");
+    var invitesQuery = new Parse.Query(invitess);
+    console.log(userEmail);
+    invitesQuery.equalTo("Email", userEmail);
+
+    invitesQuery.find({
+
+        success: function(invites) {
+            console.log(invites);
+            console.log(invites.length);
+            console.log(inviteArrayIndex);
+            console.log(invites[inviteArrayIndex]);
+            invites[inviteArrayIndex].destroy({
+
+                success: function(myObject) {
+
+                },
+                error: function(myObject, error) {
+                }
+            });
 
         },
 
-        error: function(myObject, error) {
-        }
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+            }
     });
 }
+
+function checkAreInvites(areInvites){
+    //remove the no invite thing if there are invites
+    console.log(areInvites);
+    if (areInvites) {
+        $('#inviteGroups .no_record').remove();
+    }
+};
