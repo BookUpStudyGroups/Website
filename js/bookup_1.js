@@ -304,7 +304,7 @@ invitesQuery.find({
                                                 //console.log(jQuery.data("#1GroupId","inviteIdVal"));
                                                 console.log("group joining");
                                                 console.log(this.id);
-                                                deleteInvite(invi, userEmail);
+                                                deleteInvite(this.id, userEmail);
                                                 joinGroup(this.id);
                                             });
 
@@ -313,9 +313,8 @@ invitesQuery.find({
                                             document.getElementById("i2" + groupId).addEventListener("click", function() {
 
                                                 //destroy invite
-                                                console.log(n);
                                                 console.log("invite declined");
-                                                deleteInvite(n, userEmail);
+                                                deleteInvite(this.id, userEmail);
                                                 location.reload();
                                             });
 
@@ -1230,34 +1229,51 @@ function deleteOverlays() {
     }
 }
 
-function deleteInvite(inviteArrayIndex, userEmail){
+function deleteInvite(idTag, userEmail){
 
-    var invitess= new Parse.Object.extend("PrivateInvite");
-    var invitesQuery = new Parse.Query(invitess);
-    console.log(userEmail);
-    invitesQuery.equalTo("Email", userEmail);
+    //splice the this to remmake it just group Id
+    groupId= idTag.slice(2);
 
-    invitesQuery.find({
+    //get group pbject
+    var group= new Parse.Object.extend("studyGroup");
+    var groups= new Parse.Query(group);
+    console.log("in dleete function");
+    console.log(groupId);
+    console.log(groups);
+    groups.get(groupId, {
+        success: function(groupOnInvite) {
 
-        success: function(invites) {
-            console.log(invites);
-            console.log(invites.length);
-            console.log(inviteArrayIndex);
-            console.log(invites[inviteArrayIndex]);
-            invites[inviteArrayIndex].destroy({
+            //get invite attahcted to that group and user
+            var Invites= new Parse.Object.extend("PrivateInvite");
+            var invitesQuery = new Parse.Query(Invites);
+            //invitesQuery.equalTo("group", groupOnInvite);
+            invitesQuery.equalTo("Email", userEmail);
 
-                success: function(myObject) {
+            invitesQuery.find({
+
+                success: function(invite) {
+                    console.log(invite);
+                    // invite.destroy({
+
+                    //     success: function(myObject) {
+
+                    //     },
+                    //     error: function(myObject, error) {
+                    //     }
+                    // });
 
                 },
-                error: function(myObject, error) {
-                }
+
+                error: function(error) {
+                    alert("Error: " + error.code + " " + error.message);
+                    }
             });
 
         },
-
         error: function(error) {
             alert("Error: " + error.code + " " + error.message);
-            }
+        }
+
     });
 }
 
