@@ -280,11 +280,11 @@ invitesQuery.find({
                                     }
 
                                     if(isPrivate){
-                                        $('#inviteGroups tbody').append("<tr id='"+groupId+"'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + " - <img src= 'images/lock.png' width='15px' alt=''> Private<br><i><span id='classname'>" + title + "</span></i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='i1" + groupId + "'><a href='#'><span>Accept</span></a></div><div class='join' id='i2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
+                                        $('#inviteGroups tbody').append("<tr id='"+groupId+"'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + " - <img src= 'images/lock.png' width='15px' alt=''> Private<br><i><span id='classname'>" + title + "</span></i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='x" + groupId + "'><a href='#'><span>Accept</span></a></div><div class='join' id='i2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
 
                                     }
                                     else{
-                                        $('#inviteGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='i1" + groupId + "'><a href='#'>Accept</a></div><div class='join' id='i2" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
+                                        $('#inviteGroups tbody').append("<tr id='" + groupId + "'><td width='70%'><div class='col-sm-5 col-xs-5 col-md-4 col-lg-3'><a href='#'><img class='center-block' id='classimg' width=100% src='images/" + dep + ".png' alt='' ></a></div><div class='col-sm-7 col-xs-7 col-md-8 col-lg-9'>" + topicname + "<br><i>" + title + "</i><br>" + slots + "</div></td><td width='30%'><div class='edit' id='i1" + groupId + "'><a href='#'>Accept</a></div><div class='join' id='z" + groupId + "'><a href='#'>Decline</a></div></td></tr>");
                                     }
 
                                     //loop through all invites
@@ -298,7 +298,7 @@ invitesQuery.find({
                                             console.log(invites[n].id);
 
                                             /*add event listener FOR INVITE BUTTON*/
-                                            document.getElementById("i1" + groupId).addEventListener("click", function() {
+                                            document.getElementById("x" + groupId).addEventListener("click", function() {
 
                                                 //destroy invite and join group
                                                 //console.log(jQuery.data("#1GroupId","inviteIdVal"));
@@ -310,7 +310,7 @@ invitesQuery.find({
 
                                             //jQuery.data("#i2"+groupId, "inviteIdVal", invites[n].id);
                                             /*add event listener*/
-                                            document.getElementById("i2" + groupId).addEventListener("click", function() {
+                                            document.getElementById("z" + groupId).addEventListener("click", function() {
 
                                                 //destroy invite
                                                 console.log("invite declined");
@@ -500,6 +500,38 @@ function joinGroup(){
     	}
 	});
 }
+
+function joinGroup(idTag) {
+
+            var groupId = idTag.slice(1);
+            var group = Parse.Object.extend("studyGroup");
+            var groupQuery = new Parse.Query(group);
+            groupQuery.get(groupId, {
+                success: function(results) {
+                    var numStudents = results.get("numStudents");
+                    var groupSize = results.get("groupSize");
+                    if (numStudents < groupSize) {
+                        var fullName = Parse.User.current().get("fullName");
+                        var initials = getInitials(fullName);
+                        var initialArray = results.get("initialArray");
+
+                        var members = results.relation("members");
+
+
+                        members.add(Parse.User.current());
+                        results.increment("numStudents");
+                        initialArray.push(initials);
+                        results.set("initialArray", initialArray);
+                        results.save();
+                        $('.row successmsg').append("Group joined successfully.");
+                        location.reload();
+                    }
+                },
+                error: function(object, error) {
+                    $('.row errormsg').append("Error: Group join failed.");
+                }
+            });
+        }
 
 function leftGroup(){
 	$("#joingroupbtnId").html("Processing. Please wait...");
@@ -1240,41 +1272,48 @@ function deleteInvite(idTag, userEmail){
     console.log("in dleete function");
     console.log(groupId);
     console.log(groups);
+
     groups.get(groupId, {
         success: function(groupOnInvite) {
 
             //get invite attahcted to that group and user
             var Invites= new Parse.Object.extend("PrivateInvite");
             var invitesQuery = new Parse.Query(Invites);
-            //invitesQuery.equalTo("group", groupOnInvite);
+            invitesQuery.equalTo("group", groupOnInvite);
             invitesQuery.equalTo("Email", userEmail);
 
             invitesQuery.find({
 
                 success: function(invite) {
                     console.log(invite);
-                    // invite.destroy({
+                    console.log(invite.length);
 
-                    //     success: function(myObject) {
+                     invite[0].destroy({
 
-                    //     },
-                    //     error: function(myObject, error) {
-                    //     }
-                    // });
+                         success: function(myObject) {
+                            alert('successfully deleted');
+
+                        },
+                        error: function(myObject, error) {
+                            alert("Error1: " + error.code + " " + error.message);
+
+                        }
+                    });
 
                 },
 
                 error: function(error) {
-                    alert("Error: " + error.code + " " + error.message);
+                    alert("Error1: " + error.code + " " + error.message);
                     }
             });
 
         },
         error: function(error) {
-            alert("Error: " + error.code + " " + error.message);
+            alert("Error2: " + error.code + " " + error.message);
         }
 
     });
+    
 }
 
 function checkAreInvites(areInvites){
