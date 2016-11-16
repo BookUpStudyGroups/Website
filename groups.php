@@ -141,11 +141,11 @@ require_once('header.php');
                   <table width="100%" id="myGroups" cellspacing="0" cellpadding="0" border="0">
                     <tbody>
                       <tr>
-                        <td class="greenbg" colspan="3">My Study Groups</td>
+                        <td class="greenbg" colspan="3">My Study Sessions</td>
                       </tr>
  
                           <tr>
-                            <td colspan="3" class="no_record">No Groups Found.</td>
+                            <td colspan="3" class="no_record">No BookUp Study Sessions Added.</td>
                           </tr>
                       </tbody>
                   </table>
@@ -178,11 +178,11 @@ require_once('header.php');
                   <table width="100%" id="availGroups" cellspacing="0" cellpadding="0" border="0">
                     <tbody>
                       <tr>
-                        <td class="greenbg" colspan="3">available study groups</td>
+                        <td class="greenbg" colspan="3">available Study Sessions</td>
                       </tr>
                           
                           <tr>
-                            <td colspan="3" class="no_record">No Groups Found.</td>
+                            <td colspan="3" class="no_record">No BookUp Study Sessions Found.</td>
                           </tr>
                       
                         

@@ -55,7 +55,7 @@
                 <li><a href="index.php" title="Home" id="Home">&nbsp;HOME</a></li>
                
                 
-                <li style="display:none;"><a href='search-group.php' title='Search group' >&nbsp;NAVIGATOR</a></li><li style="display:none;"><a href='groups.php' title='View Group' >&nbsp;GROUPS</a></li><li style="display:none;"><a href='matches.php' title='View Study Buddies' >&nbsp;MATCHES</a></li><li id='logout' style="display:none;"><a href='logout.php' title='Log out'>&nbsp;LOG OUT</a></li>
+                <li style="display:none;"><a href='search-group.php' title='Search group' >&nbsp;NAVIGATOR</a></li><li style="display:none;"><a href='groups.php' title='View Group' >&nbsp;STUDY SESSIONS</a></li><li style="display:none;"><a href='matches.php' title='View Study Buddies' >&nbsp;MATCHES</a></li><li id='logout' style="display:none;"><a href='logout.php' title='Log out'>&nbsp;LOG OUT</a></li>
                     
 <li style="display:none;"><a href='register.php' title='Register' >&nbsp;REGISTER</a></li><li style="display:none;"><a href='login.php' title='Login' >&nbsp;LOGIN</a></li>                
                 

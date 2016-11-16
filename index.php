@@ -62,7 +62,7 @@ $body_id = 'homebody';
 
             <div class="col-md-4 col-sm-4"> <a href="matches.php"><div class="img_cont"><img alt="Request a Study Buddy" title="Request a Study Buddy" src="images/buddy.png" ></div></a> <div class="home_btn_label">REQUEST A<br>Study Buddy</div></div>
 
-            <div class="col-md-4 col-sm-4"> <a href="groups.php"><div class="img_cont"><img alt="Find a Study Spot" title="Find a Study Spot" src="images/groupstudy.png" ></div></a><div class="home_btn_label">FIND A<br>Study Group</div> </div>
+            <div class="col-md-4 col-sm-4"> <a href="groups.php"><div class="img_cont"><img alt="Find a Study Spot" title="Find a Study Spot" src="images/groupstudy.png" ></div></a><div class="home_btn_label">FIND A<br>BookUp Study Session</div> </div>
             <div class="col-md-4 col-sm-4"> <a href="http://www.dartmouth.edu/~acskills/peertutoring.html"><div class="img_cont"><img alt="Request a Tutor" title="Request a Tutor" src="images/tutor.png" ></div></a> <div class="home_btn_label">REQUEST A<br>Course Tutor</div></div>
         </div>
 

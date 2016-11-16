@@ -17,13 +17,13 @@ $body_id = 'search_group_body';
 	
 
 		</ul>
-                          <a href="#" id="create-group">Add New Group</a>
+                          <a href="#" id="create-group">Add New Study Session</a>
     </div><!--#user-classes-->
 
     <div id="left-side-buttons">
-    	<!--<a href="#" id="create-group">Add New Group</a>-->
+    	<!--<a href="#" id="create-group">Add New Study Session</a>-->
     </div><!--#left-side-buttons-->
-<input id="center-location" type="text" name="center-location" value="Dartmouth College"> 
+<input id="center-location" type="text" name="center-location" placeholder="Search for a Study Spot" autofocus> 
 </div><!--#map-container-->
 <table id="user-id-table">
                          <tbody></tbody>
@@ -40,7 +40,7 @@ $body_id = 'search_group_body';
 
 <div id="group-details-div">
 		<div class="close"><i class="fa fa-times"></i></div>
-    <div class="reg-title">Join a Group</div>
+    <div class="reg-title">Join a BookUp Study Session</div>
           <div class="profileimg" id="profileimgId">
             <div class="row">
               <div class="col-md-12 col-sm-12">
@@ -69,11 +69,15 @@ $body_id = 'search_group_body';
                         <td class="leftCol"><strong>Time:</strong></td>
                         <td class="rightCol start_end_time"></td>
                       </tr>
+                        <tr>
+                        <td class="leftCol"><strong>Capacity:</strong></td>
+                        <td class="rightCol slots"></td>
+                      </tr>
                     </table>
                   </div><!--.responsive-table-->
                   
                   <div class="moredetailsbtn">
-                  	<a href="javascript:void(0);">More Details</a>
+                  	<a href="javascript:void(0);">Join BookUp Study Session</a>
                   </div><!--.moredetailsbtn-->
                   <div class="more-details">
                     
@@ -89,7 +93,7 @@ $body_id = 'search_group_body';
   
   <div id="create-group-div" class="resizable">
 		<div class="close"><i class="fa fa-times"></i></div>
-  	<div class="reg-title">Add New Group</div>
+  	<div class="reg-title">Add New Study Session</div>
         <div class="login_box registration" id="createGroupInnerId">
           <form method="post" action="" id="addgroupform" onsubmit="submitNewGroup();return false; ">
             
@@ -125,7 +129,7 @@ $body_id = 'search_group_body';
               <input type="text" class="form-control" placeholder="Enter Room Number" name="ag_room" id="ag_room" value="">
             </div>
 <div class="form-group">
-              <label for="ag_size">Max Group Size</label>
+              <label for="ag_size">Max Session Size</label>
               <select class="form-control" name="ag_size" id="ag_size">
 <option value='3'>3</option>
 <option value='4'>4</option>
@@ -143,7 +147,7 @@ $body_id = 'search_group_body';
 
             <!--Rdio buttons for open or closed groups -->
             <div class="form-group">
-              <label for="ag_size">Group Type</label>
+              <label for="ag_size">Session Type</label>
                 
                 <input id="publicRadio"type="radio" name= "isPublic" value= "yes" checked>Public
                 <input id="privateRadio"type="radio" name="isPublic" value= "no" ]> Private
@@ -155,7 +159,7 @@ $body_id = 'search_group_body';
             	<input type="hidden" name="ag_location_latlng" id="ag_location_latlng" value="" />
             	<input type="hidden" name="ag_start_time" id="ag_start_time" value="" />
             	<input type="hidden" name="ag_end_time" id="ag_end_time" value="" />
-				      <button class="btn btn-default" title="Add" type="submit" name="ag_submit" id="ag_submit">Add Group</button>
+				      <button class="btn btn-default" title="Add" type="submit" name="ag_submit" id="ag_submit">Add BookUp Study Session</button>
             </div>
           </form>
         </div>

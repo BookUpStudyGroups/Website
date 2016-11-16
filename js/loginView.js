@@ -1,9 +1,8 @@
-
     function checkLoginForm(){
 if (validateLogin()==false){
 return false;
 }else{
- var username=document.getElementById("si_email").value;
+ var username=document.getElementById("si_email").value.toLowerCase();
 var password=document.getElementById("si_password").value;
 
 if(1==1){

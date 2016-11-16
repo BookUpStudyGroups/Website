@@ -760,8 +760,6 @@ background: #3E61C3 none repeat scroll 0 0;
 border-radius: 50px;
 color: #FFF;
 padding: 10px 10px;
-   right: 10px;
-position: absolute;
 display:inline-block;	
 font-size: 18px!important;
 }
@@ -947,16 +945,16 @@ margin: 0px 0px 15px 0px !important;
 .profile_sec .pull-left { margin-bottom:30px;}
 .notification, .profile_sec .innerpage-left { min-height:inherit; padding:15px;}
 .logo { padding:20px 15px;}
-.slider_section .logo-home { padding:20px;}
+.slider_section .logo-home { padding:0px;}
 .slider_section .logo-home img { width:100%;}
 .slider_section .start_studying { position:absolute!important; bottom:10px!important;}
 /*#wrap { background:#c3dd9e;}*/
-#picons{display:none !important}
+    .img_cont {width:35%;}
 .top_four_icons, .scroll_button, .section, .study_img { display:none;}
 .htop_four_icons{display:block;}
 .copyrite { height:auto; margin:0px; min-height:inherit;}
 #forgotbody .padding-page { margin-top:0;}
-#profilebody .copyrite{	margin-top: 50px;}
+#profilebody .copyrite{	margin-top: 0px;}
 .profileimg .viewmatch { display:block;}
 .edit_profile { float:left; margin-bottom:0px; margin-top:0;}
 .delete, .edit, .join { margin-bottom:3px; display:block;}
@@ -966,7 +964,7 @@ margin: 0px 0px 15px 0px !important;
 #user-classes li span { min-width:108px;}
 #search_group_body .copyrite { display:none;}
 #user-classes{
-top:110px !important;
+top:115px !important;
 }
 #center-location{
 right:10px !important;
